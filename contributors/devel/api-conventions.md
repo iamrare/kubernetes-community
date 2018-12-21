@@ -306,34 +306,60 @@ response reduces the complexity of these clients.
 ##### Typical status properties
 
 **Conditions** represent the latest available observations of an object's
-current state. Objects may report multiple conditions, and new types of
-conditions may be added in the future. Therefore, conditions are represented
-using a list/slice, where all have similar structure.
+state.  They are an extension mechanism intended to be used when the details of
+an observation are not a priori known or would not apply to all instances of a
+given Kind.  For observations that are well known and apply to all instances, a
+regular field is preferred.  An example of a Condition that probably should
+have been a regular field is Pod's "Ready" condition - it is managed by core
+controllers, it is well understood, and it applies to all Pods.
+
+Objects may report multiple conditions, and new types of conditions may be
+added in the future or by 3rd party controllers. Therefore, conditions are
+represented using a list/slice, where all have similar structure.
 
 The `FooCondition` type for some resource type `Foo` may include a subset of the
 following fields, but must contain at least `type` and `status` fields:
 
 ```go
-  Type               FooConditionType  `json:"type" description:"type of Foo condition"`
-  Status             ConditionStatus   `json:"status" description:"status of the condition, one of True, False, Unknown"`
+  Type               FooConditionType   `json:"type" description:"type of Foo condition"`
+  Status             ConditionStatus    `json:"status" description:"status of the condition, one of True, False, Unknown"`
+
   // +optional
-  LastHeartbeatTime  unversioned.Time  `json:"lastHeartbeatTime,omitempty" description:"last time we got an update on a given condition"`
+  Reason             *string            `json:"reason,omitempty" description:"one-word CamelCase reason for the condition's last transition"`
   // +optional
-  LastTransitionTime unversioned.Time  `json:"lastTransitionTime,omitempty" description:"last time the condition transit from one status to another"`
+  Message            *string            `json:"message,omitempty" description:"human-readable message indicating details about last transition"`
+
   // +optional
-  Reason             string            `json:"reason,omitempty" description:"one-word CamelCase reason for the condition's last transition"`
+  LastHeartbeatTime  *unversioned.Time  `json:"lastHeartbeatTime,omitempty" description:"last time we got an update on a given condition"`
   // +optional
-  Message            string            `json:"message,omitempty" description:"human-readable message indicating details about last transition"`
+  LastTransitionTime *unversioned.Time  `json:"lastTransitionTime,omitempty" description:"last time the condition transit from one status to another"`
 ```
 
 Additional fields may be added in the future.
 
+Do not use fields that you don't need - simpler is better.
+
+Use of the `Reason` field is encouraged.
+
+Use the `LastHeartbeatTime` with great caution - frequent changes to this field
+can cause a large fan-out effect for some resources.
+
 Conditions should be added to explicitly convey properties that users and
 components care about rather than requiring those properties to be inferred from
-other observations.
+other observations.  Once defined, the meaning of a Condition can not be
+changed arbitrarily - it becomes part of the API, and has the same backwards-
+and forwards-compatibility concerns of any other part of the API.
 
 Condition status values may be `True`, `False`, or `Unknown`. The absence of a
-condition should be interpreted the same as `Unknown`.
+condition should be interpreted the same as `Unknown`.  How controllers handle
+`Unknown` depends on the Condition in question.
+
+Condition types should indicate state in the "abnormal-true" polarity.  For
+example, if the condition indicates when a policy is invalid, the "is valid"
+case is probably the norm, so the condition should be called "Invalid".
+
+The thinking around conditions has evolved over time, so there are several
+non-normative examples in wide use.
 
 In general, condition values may change back and forth, but some condition
 transitions may be monotonic, depending on the resource and condition type.
@@ -342,24 +368,26 @@ we define comprehensive state machines for objects, nor behaviors associated
 with state transitions. The system is level-based rather than edge-triggered,
 and should assume an Open World.
 
-A typical oscillating condition type is `Ready`, which indicates the object was
-believed to be fully operational at the time it was last probed. A possible
-monotonic condition could be `Succeeded`. A `False` status for `Succeeded` would
-imply failure. An object that was still active would not have a `Succeeded`
-condition, or its status would be `Unknown`.
+An example of an oscillating condition type is `Ready` (despite it running
+afoul of current guidance), which indicates the object was believed to be fully
+operational at the time it was last probed. A possible monotonic condition
+could be `Failed`. A `True` status for `Failed` would imply failure with no
+retry. An object that was still active would generally not have a `Failed`
+condition.
 
 Some resources in the v1 API contain fields called **`phase`**, and associated
 `message`, `reason`, and other status fields. The pattern of using `phase` is
-deprecated. Newer API types should use conditions instead. Phase was essentially
-a state-machine enumeration field, that contradicted
-[system-design principles](../design-proposals/architecture/principles.md#control-logic) and hampered
-evolution, since [adding new enum values breaks backward
+deprecated. Newer API types should use conditions instead. Phase was
+essentially a state-machine enumeration field, that contradicted [system-design
+principles](../design-proposals/architecture/principles.md#control-logic) and
+hampered evolution, since [adding new enum values breaks backward
 compatibility](api_changes.md). Rather than encouraging clients to infer
-implicit properties from phases, we intend to explicitly expose the conditions
-that clients need to monitor. Conditions also have the benefit that it is
-possible to create some conditions with uniform meaning across all resource
-types, while still exposing others that are unique to specific resource types.
-See [#7856](http://issues.k8s.io/7856) for more details and discussion.
+implicit properties from phases, we prefer to explicitly expose the individual
+conditions that clients need to monitor. Conditions also have the benefit that
+it is possible to create some conditions with uniform meaning across all
+resource types, while still exposing others that are unique to specific
+resource types.  See [#7856](http://issues.k8s.io/7856) for more details and
+discussion.
 
 In condition types, and everywhere else they appear in the API, **`Reason`** is
 intended to be a one-word, CamelCase representation of the category of cause of
