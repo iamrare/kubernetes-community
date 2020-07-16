@@ -8,12 +8,12 @@ To understand how this file is generated, see https://git.k8s.io/community/gener
 --->
 # Autoscaling Special Interest Group
 
-Covers development and maintenance of components for automated scaling in Kubernetes.  This includes automated vertical and horizontal pod autoscaling, initial resource estimation, cluster-proportional system component autoscaling, and autoscaling of Kubernetes clusters themselves.
+Covers development and maintenance of components for automated scaling in Kubernetes. This includes automated vertical and horizontal pod autoscaling, initial resource estimation, cluster-proportional system component autoscaling, and autoscaling of Kubernetes clusters themselves.
 
 The [charter](charter.md) defines the scope and governance of the Autoscaling Special Interest Group.
 
 ## Meetings
-* Regular SIG Meeting: [Mondays at 14:00 UTC](https://docs.google.com/document/d/1FQx0BPlkkl1Bn0c9ocVBxYIKojpmrS1CFP5h0DI68AE/edit) (biweekly/triweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=14:00&tz=UTC).
+* Regular SIG Meeting: [Mondays at 14:00 UTC](https://zoom.us/j/944410904) (biweekly/triweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=14:00&tz=UTC).
   * [Meeting notes and Agenda](https://docs.google.com/document/d/1RvhQAEIrVLHbyNnuaT99-6u9ZUMp7BfkPupT2LAZK7w/edit).
 
 ## Leadership
@@ -21,59 +21,75 @@ The [charter](charter.md) defines the scope and governance of the Autoscaling Sp
 ### Chairs
 The Chairs of the SIG run operations and processes governing the SIG.
 
+* Guy Templeton (**[@gjtempleton](https://github.com/gjtempleton)**), Skyscanner
 * Marcin Wielgus (**[@mwielgus](https://github.com/mwielgus)**), Google
-* Solly Ross (**[@directxman12](https://github.com/directxman12)**), Google
 
 ## Contact
-* [Slack](https://kubernetes.slack.com/messages/sig-autoscaling)
-* [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-autoscaling)
-* [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Fautoscaling)
+- Slack: [#sig-autoscaling](https://kubernetes.slack.com/messages/sig-autoscaling)
+- [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-autoscaling)
+- [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Fautoscaling)
+- GitHub Teams:
+    - [@kubernetes/sig-autoscaling-api-reviews](https://github.com/orgs/kubernetes/teams/sig-autoscaling-api-reviews) - API Changes and Reviews
+    - [@kubernetes/sig-autoscaling-bugs](https://github.com/orgs/kubernetes/teams/sig-autoscaling-bugs) - Bug Triage and Troubleshooting
+    - [@kubernetes/sig-autoscaling-feature-requests](https://github.com/orgs/kubernetes/teams/sig-autoscaling-feature-requests) - Feature Requests
+    - [@kubernetes/sig-autoscaling-misc](https://github.com/orgs/kubernetes/teams/sig-autoscaling-misc) - General Discussion
+    - [@kubernetes/sig-autoscaling-pr-reviews](https://github.com/orgs/kubernetes/teams/sig-autoscaling-pr-reviews) - PR Reviews
+    - [@kubernetes/sig-autoscaling-proposals](https://github.com/orgs/kubernetes/teams/sig-autoscaling-proposals) - Design Proposals
+    - [@kubernetes/sig-autoscaling-test-failures](https://github.com/orgs/kubernetes/teams/sig-autoscaling-test-failures) - Test Failures and Triage
 
 ## Subprojects
 
-The following subprojects are owned by sig-autoscaling:
-- **scale-client**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/client-go/master/scale/OWNERS
-- **cluster-autoscaler**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/autoscaler/master/OWNERS
-- **vertical-pod-autoscaler**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/autoscaler/master/OWNERS
-- **horizontal-pod-autoscaler**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/pkg/controller/podautoscaler/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/api/master/autoscaling/OWNERS
-- **cluster-proportional-vertical-autoscaler**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes-incubator/cluster-proportional-vertical-autoscaler/master/OWNERS
-- **cluster-proportional-autoscaler**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes-incubator/cluster-proportional-autoscaler/master/OWNERS
-- **addon-resizer**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/autoscaler/master/addon-resizer/OWNERS
+The following [subprojects][subproject-definition] are owned by sig-autoscaling:
+### addon-resizer
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/autoscaler/master/addon-resizer/OWNERS
+### cluster-autoscaler
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/autoscaler/master/OWNERS
+### horizontal-pod-autoscaler
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/api/master/autoscaling/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/pkg/controller/podautoscaler/OWNERS
+### scale-client
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/client-go/master/scale/OWNERS
+### vertical-pod-autoscaler
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/autoscaler/master/OWNERS
 
-## GitHub Teams
-
-The below teams can be mentioned on issues and PRs in order to get attention from the right people.
-Note that the links to display team membership will only work if you are a member of the org.
-
-| Team Name | Details | Description |
-| --------- |:-------:| ----------- |
-| @kubernetes/sig-autoscaling-api-reviews | [link](https://github.com/orgs/kubernetes/teams/sig-autoscaling-api-reviews) | API Changes and Reviews |
-| @kubernetes/sig-autoscaling-bugs | [link](https://github.com/orgs/kubernetes/teams/sig-autoscaling-bugs) | Bug Triage and Troubleshooting |
-| @kubernetes/sig-autoscaling-feature-requests | [link](https://github.com/orgs/kubernetes/teams/sig-autoscaling-feature-requests) | Feature Requests |
-| @kubernetes/sig-autoscaling-misc | [link](https://github.com/orgs/kubernetes/teams/sig-autoscaling-misc) | General Discussion |
-| @kubernetes/sig-autoscaling-pr-reviews | [link](https://github.com/orgs/kubernetes/teams/sig-autoscaling-pr-reviews) | PR Reviews |
-| @kubernetes/sig-autoscaling-proposals | [link](https://github.com/orgs/kubernetes/teams/sig-autoscaling-proposals) | Design Proposals |
-| @kubernetes/sig-autoscaling-test-failures | [link](https://github.com/orgs/kubernetes/teams/sig-autoscaling-test-failures) | Test Failures and Triage |
-
+[subproject-definition]: https://github.com/kubernetes/community/blob/master/governance.md#subprojects
 <!-- BEGIN CUSTOM CONTENT -->
 ## Concerns
 * autoscaling of clusters,
 * horizontal and vertical autoscaling of pods,
 * setting initial resources for pods,
 * topics related to monitoring pods and gathering their metrics (e.g.: Heapster)
+
+## Demo and Presentation Guidelines
+
+If you want to demo at SIG Autoscaling, we have some guidelines:
+
+- Demos should talk about *open-source* projects relevant to Kubernetes autoscaling, such as:
+
+  * Prototypes for features to be added to Kubernetes
+  * Projects that fill gaps in our infrastructure that we might want to address
+  * Alternative approaches to what we do now that we may want to research
+ 
+- Demos and presentations should be geared towards a techincal audience.
+
+- Demos and presentations should not talk about company history or background,
+  except to provide context for a usecase or issue:
+  
+  * "We're a retail company, and people don't shop as much during at 3am, so we generally
+  see patterns of traffic around times" is acceptable.
+  
+  * Giving a company elevator pitch is not acceptable.
+
+- Non-demo presentations should focus on usecases and issues.  A good rule of thumb is that
+  content should be relevant in some form to a design doc or KEP's motivation or background
+  sections.  If it's not, it probably doesn't belong in the presentation.
+
+- Demos and presentations *should not pitch products*.  If you want to talk about a product that's
+  recently been open-sourced, focus on it from the perspective of why it's useful to the *community*.
+
 <!-- END CUSTOM CONTENT -->

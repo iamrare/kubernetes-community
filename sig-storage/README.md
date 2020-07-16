@@ -13,7 +13,7 @@ SIG Storage is responsible for ensuring that different types of file and block s
 The [charter](charter.md) defines the scope and governance of the Storage Special Interest Group.
 
 ## Meetings
-* Regular SIG Meeting: [Thursdays at 9:00 PT (Pacific Time)](https://docs.google.com/document/d/1FQx0BPlkkl1Bn0c9ocVBxYIKojpmrS1CFP5h0DI68AE/edit) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=9:00&tz=PT%20%28Pacific%20Time%29).
+* Regular SIG Meeting: [Thursdays at 9:00 PT (Pacific Time)](https://zoom.us/j/614261834) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=9:00&tz=PT%20%28Pacific%20Time%29).
   * [Meeting notes and Agenda](https://docs.google.com/document/d/1-8KEG8AjAgKznS9NFm3qWqkGyCHmvU6HVl0sk5hwoAE/edit?usp=sharing).
   * [Meeting recordings](https://www.youtube.com/watch?v=Eh7Qa7KOL8o&list=PL69nYSiGNLP02-BMqJdfFgGxYQ4Nb-2Qq).
 
@@ -23,72 +23,94 @@ The [charter](charter.md) defines the scope and governance of the Storage Specia
 The Chairs of the SIG run operations and processes governing the SIG.
 
 * Saad Ali (**[@saad-ali](https://github.com/saad-ali)**), Google
-* Bradley Childs (**[@childsb](https://github.com/childsb)**), Red Hat
+* Xing Yang (**[@xing-yang](https://github.com/xing-yang)**), VMware
+
+### Technical Leads
+The Technical Leads of the SIG establish new subprojects, decommission existing
+subprojects, and resolve cross-subproject technical issues and decisions.
+
+* Jan Šafránek (**[@jsafrane](https://github.com/jsafrane)**), Red Hat
+* Michelle Au (**[@msau42](https://github.com/msau42)**), Google
+
+## Emeritus Leads
+
+* Bradley Childs (**[@childsb](https://github.com/childsb)**)
 
 ## Contact
-* [Slack](https://kubernetes.slack.com/messages/sig-storage)
-* [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-storage)
-* [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Fstorage)
+- Slack: [#sig-storage](https://kubernetes.slack.com/messages/sig-storage)
+- [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-storage)
+- [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Fstorage)
+- GitHub Teams:
+    - [@kubernetes/sig-storage-api-reviews](https://github.com/orgs/kubernetes/teams/sig-storage-api-reviews) - API Changes and Reviews
+    - [@kubernetes/sig-storage-bugs](https://github.com/orgs/kubernetes/teams/sig-storage-bugs) - Bug Triage and Troubleshooting
+    - [@kubernetes/sig-storage-feature-requests](https://github.com/orgs/kubernetes/teams/sig-storage-feature-requests) - Feature Requests
+    - [@kubernetes/sig-storage-misc](https://github.com/orgs/kubernetes/teams/sig-storage-misc) - General Discussion
+    - [@kubernetes/sig-storage-pr-reviews](https://github.com/orgs/kubernetes/teams/sig-storage-pr-reviews) - PR Reviews
+    - [@kubernetes/sig-storage-proposals](https://github.com/orgs/kubernetes/teams/sig-storage-proposals) - Design Proposals
+    - [@kubernetes/sig-storage-test-failures](https://github.com/orgs/kubernetes/teams/sig-storage-test-failures) - Test Failures and Triage
 
 ## Subprojects
 
-The following subprojects are owned by sig-storage:
-- **kubernetes-csi**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-cinder/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-flex/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-host-path/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-iscsi/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-lib-common/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-lib-fc/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-lib-iscsi/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-test/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/docs/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/driver-registrar/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/drivers/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/kubernetes-csi.github.io/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/livenessprobe/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/external-attacher/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/external-provisioner/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/external-resizer/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/kubernetes-csi-migration-library/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/csi-api/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/src/k8s.io/csi-api/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/cluster-driver-registrar/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/node-driver-registrar/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-csi/csi-lib-utils/master/OWNERS
-- **external-storage**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes-incubator/external-storage/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-sigs/sig-storage-lib-external-provisioner/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-sigs/sig-storage-local-static-provisioner/master/OWNERS
-- **git-sync**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/git-sync/master/OWNERS
-- **nfs-provisioner**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes-incubator/nfs-provisioner/master/OWNERS
-- **volumes**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/pkg/volume/OWNERS
+The following [subprojects][subproject-definition] are owned by sig-storage:
+### external-storage
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-incubator/external-storage/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-sigs/sig-storage-lib-external-provisioner/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-sigs/sig-storage-local-static-provisioner/master/OWNERS
+### git-sync
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/git-sync/master/OWNERS
+### gluster-provisioner
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/gluster-block-external-provisioner/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-sigs/gluster-file-external-provisioner/master/OWNERS
+### kubernetes-cosi
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/container-object-storage-interface-csi-adapter/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-sigs/container-object-storage-interface-spec/master/OWNERS
+### kubernetes-csi
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-csi/cluster-driver-registrar/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-flex/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-host-path/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-image-populator/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-iscsi/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-lib-fc/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-lib-iscsi/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-lib-utils/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-proxy/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-release-tools/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/csi-test/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/docs/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/driver-registrar/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/drivers/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/external-attacher/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/external-health-monitor/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/external-provisioner/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/external-resizer/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/kubernetes-csi.github.io/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/livenessprobe/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-csi/node-driver-registrar/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/csi-api/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/csi-translation-lib/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/src/k8s.io/csi-api/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/src/k8s.io/csi-translation-lib/OWNERS
+### mount-utils
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/src/k8s.io/mount-utils/OWNERS
+### nfs-provisioner
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-incubator/nfs-provisioner/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-sigs/nfs-subdir-external-provisioner/master/OWNERS
+### volumes
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/pkg/volume/OWNERS
 
-## GitHub Teams
-
-The below teams can be mentioned on issues and PRs in order to get attention from the right people.
-Note that the links to display team membership will only work if you are a member of the org.
-
-| Team Name | Details | Description |
-| --------- |:-------:| ----------- |
-| @kubernetes/sig-storage-api-reviews | [link](https://github.com/orgs/kubernetes/teams/sig-storage-api-reviews) | API Changes and Reviews |
-| @kubernetes/sig-storage-bugs | [link](https://github.com/orgs/kubernetes/teams/sig-storage-bugs) | Bug Triage and Troubleshooting |
-| @kubernetes/sig-storage-feature-requests | [link](https://github.com/orgs/kubernetes/teams/sig-storage-feature-requests) | Feature Requests |
-| @kubernetes/sig-storage-misc | [link](https://github.com/orgs/kubernetes/teams/sig-storage-misc) | General Discussion |
-| @kubernetes/sig-storage-pr-reviews | [link](https://github.com/orgs/kubernetes/teams/sig-storage-pr-reviews) | PR Reviews |
-| @kubernetes/sig-storage-proposals | [link](https://github.com/orgs/kubernetes/teams/sig-storage-proposals) | Design Proposals |
-| @kubernetes/sig-storage-test-failures | [link](https://github.com/orgs/kubernetes/teams/sig-storage-test-failures) | Test Failures and Triage |
-
+[subproject-definition]: https://github.com/kubernetes/community/blob/master/governance.md#subprojects
 <!-- BEGIN CUSTOM CONTENT -->
 
 ## Details
@@ -97,11 +119,11 @@ The Kubernetes Storage Special-Interest-Group (SIG) is a working group within th
 ### Meeting
 We hold a public meeting every two weeks, on Thursdays at 9 AM (PT).
 * Agenda and any notes from each meeting are captured in [this document](https://docs.google.com/document/d/1-8KEG8AjAgKznS9NFm3qWqkGyCHmvU6HVl0sk5hwoAE/edit?usp=sharing).
-* Contact saadali@google.com to be added to the calendar invite.
+* Copy the meeting invite from the [Shared SIG Storage Calendar](https://calendar.google.com/calendar/embed?src=vvvo48r6cprccii1lsava6p2uc%40group.calendar.google.com).
 * Recordings of past meetings: https://www.youtube.com/playlist?list=PLb1_clREIGYVaqvKaUsVyXxjfcSQDBnmB
 
 ### Contributing
-Interested in contributing to storage features in Kubernetes? [Please read our guide for new contributors](https://github.com/kubernetes/community/blob/master/sig-storage/contributing.md)
+Interested in contributing to storage features in Kubernetes? [Please read our guide for new contributors](/sig-storage/CONTRIBUTING.md)
 
 ### Links
 * Public Slack Channel: https://kubernetes.slack.com/messages/sig-storage/details/

@@ -13,8 +13,20 @@ The Architecture SIG maintains and evolves the design principles of Kubernetes, 
 The [charter](charter.md) defines the scope and governance of the Architecture Special Interest Group.
 
 ## Meetings
-* Regular SIG Meeting: [Thursdays at 19:00 UTC](https://docs.google.com/document/d/1FQx0BPlkkl1Bn0c9ocVBxYIKojpmrS1CFP5h0DI68AE/edit) (weekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=19:00&tz=UTC).
+* Enhancements Subproject Meeting: [Tuesdays at 8:30 PT (Pacific Time)](https://zoom.us/j/95357819945) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=8:30&tz=PT%20%28Pacific%20Time%29).
+  * [Meeting notes and Agenda](https://bit.ly/k8s-enhancements-agenda).
+  * [Meeting recordings](TBD).
+* Production Readiness Office Hours: [Wednesdays at 12:00 PT (Pacific Time)](https://zoom.us/j/482444151) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=12:00&tz=PT%20%28Pacific%20Time%29).
+  * [Meeting notes and Agenda](https://docs.google.com/document/d/10QkXwiZfBL7wBKHHFslooXvGDKHA75jkkgiIXuKFryM/edit?usp=sharing).
+  * [Meeting recordings](https://www.youtube.com/playlist?list=PL69nYSiGNLP2m6198LaLN6YahX7EEac5g).
+* Regular SIG Meeting: [Thursdays at 19:00 UTC](https://zoom.us/j/845605479) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=19:00&tz=UTC).
   * [Meeting notes and Agenda](https://docs.google.com/document/d/1BlmHq5uPyBUDlppYqAAzslVbAO8hilgjqZUTaNXUhKM/edit).
+  * [Meeting recordings](https://www.youtube.com/playlist?list=PL69nYSiGNLP2m6198LaLN6YahX7EEac5g).
+* code organization Office Hours: [Thursdays at 14:00 PT (Pacific Time)](https://zoom.us/j/159990793) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=14:00&tz=PT%20%28Pacific%20Time%29).
+  * [Meeting notes and Agenda](https://docs.google.com/document/d/1HtTI0rJEGP_MSf6eO87aCmx_tzpovPAAg7U2Zxwm8FE/edit#).
+  * [Meeting recordings](https://www.youtube.com/playlist?list=PL69nYSiGNLP03VEluzh0wpSRPzgve8kI5).
+* conformance office Hours: [Tuesdays at 19:00 UTC](https://zoom.us/j/427337923) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=19:00&tz=UTC).
+  * [Meeting notes and Agenda](https://docs.google.com/document/d/1W31nXh9RYAb_VaYkwuPLd1hFxuRX3iU0DmaQ4lkCsX8/edit#).
   * [Meeting recordings](https://www.youtube.com/playlist?list=PL69nYSiGNLP2m6198LaLN6YahX7EEac5g).
 
 ## Leadership
@@ -22,72 +34,65 @@ The [charter](charter.md) defines the scope and governance of the Architecture S
 ### Chairs
 The Chairs of the SIG run operations and processes governing the SIG.
 
-* Brian Grant (**[@bgrant0607](https://github.com/bgrant0607)**), Google
-* Jaice Singer DuMars (**[@jdumars](https://github.com/jdumars)**), Google
-* Matt Farina (**[@mattfarina](https://github.com/mattfarina)**), Samsung SDS
+* Derek Carr (**[@derekwaynecarr](https://github.com/derekwaynecarr)**), Red Hat
+* Davanum Srinivas (**[@dims](https://github.com/dims)**), VMware
+* John Belamaric (**[@johnbelamaric](https://github.com/johnbelamaric)**), Google
 
 ## Contact
-* [Slack](https://kubernetes.slack.com/messages/sig-architecture)
-* [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-architecture)
-* [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Farchitecture)
+- Slack: [#sig-architecture](https://kubernetes.slack.com/messages/sig-architecture)
+- [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-architecture)
+- [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Farchitecture)
+- GitHub Teams:
+    - [@kubernetes/sig-architecture-api-reviews](https://github.com/orgs/kubernetes/teams/sig-architecture-api-reviews) - API Changes and Reviews
+    - [@kubernetes/sig-architecture-bugs](https://github.com/orgs/kubernetes/teams/sig-architecture-bugs) - Bug Triage and Troubleshooting
+    - [@kubernetes/sig-architecture-feature-requests](https://github.com/orgs/kubernetes/teams/sig-architecture-feature-requests) - Feature Requests
+    - [@kubernetes/sig-architecture-misc-use-only-as-a-last-resort](https://github.com/orgs/kubernetes/teams/sig-architecture-misc-use-only-as-a-last-resort) - General Discussion
+    - [@kubernetes/sig-architecture-pr-reviews](https://github.com/orgs/kubernetes/teams/sig-architecture-pr-reviews) - PR Reviews
+    - [@kubernetes/sig-architecture-proposals](https://github.com/orgs/kubernetes/teams/sig-architecture-proposals) - Design Proposals
+    - [@kubernetes/sig-architecture-test-failures](https://github.com/orgs/kubernetes/teams/sig-architecture-test-failures) - Test Failures and Triage
 
 ## Subprojects
 
-The following subprojects are owned by sig-architecture:
-- **architecture-and-api-governance**
-  - Description: [Described below](#architecture-and-api-governance)
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/community/master/contributors/design-proposals/architecture/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-sigs/architecture-tracking/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/api/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/src/k8s.io/api/OWNERS
-- **conformance-definition**
-  - Description: [Described below](#conformance-definition)
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/test/conformance/testdata/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/test/conformance/OWNERS
-- **kep-adoption-and-reviews**
-  - Description: [Described below](#kep-adoption-and-reviews)
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/community/master/keps/OWNERS
-- **code-organization**
-  - Description: [Described below](#code-organization)
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/contrib/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/utils/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/vendor/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/third_party/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/OWNERS
-- **klog**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/klog/master/OWNERS
-- **steering**
-  - Description: Placeholder until sigs.yaml supports committees as first-class groups. These repos are owned by the kubernetes steering committee, which is a wholly separate entity from SIG Architecture
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/steering/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes-incubator/spartakus/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes-template-project/master/OWNERS
+The following [subprojects][subproject-definition] are owned by sig-architecture:
+### architecture-and-api-governance
+[Described below](#architecture-and-api-governance)
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/api/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/community/master/contributors/design-proposals/architecture/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/src/k8s.io/api/OWNERS
+### code-organization
+[Described below](#code-organization)
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/third_party/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/vendor/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/utils/master/OWNERS
+- **Contact:**
+  - Slack: [#k8s-code-organization](https://kubernetes.slack.com/messages/k8s-code-organization)
+### conformance-definition
+[Described below](#conformance-definition)
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/test/conformance/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/test/conformance/testdata/OWNERS
+- **Contact:**
+  - Slack: [#k8s-conformance](https://kubernetes.slack.com/messages/k8s-conformance)
+  - GitHub Teams:
+    - [@kubernetes/cncf-conformance-wg](https://github.com/orgs/kubernetes/teams/cncf-conformance-wg)
+### enhancements
+[Described below](#enhancements)
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/enhancements/master/OWNERS
+- **Contact:**
+  - Slack: [#enhancements](https://kubernetes.slack.com/messages/enhancements)
+### production-readiness
+[Described below](#production-readiness)
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/community/master/sig-architecture/OWNERS
+- **Contact:**
+  - Slack: [#prod-readiness](https://kubernetes.slack.com/messages/prod-readiness)
 
-## GitHub Teams
-
-The below teams can be mentioned on issues and PRs in order to get attention from the right people.
-Note that the links to display team membership will only work if you are a member of the org.
-
-| Team Name | Details | Description |
-| --------- |:-------:| ----------- |
-| @kubernetes/sig-architecture-api-reviews | [link](https://github.com/orgs/kubernetes/teams/sig-architecture-api-reviews) | API Changes and Reviews |
-| @kubernetes/sig-architecture-bugs | [link](https://github.com/orgs/kubernetes/teams/sig-architecture-bugs) | Bug Triage and Troubleshooting |
-| @kubernetes/sig-architecture-feature-requests | [link](https://github.com/orgs/kubernetes/teams/sig-architecture-feature-requests) | Feature Requests |
-| @kubernetes/sig-architecture-misc-use-only-as-a-last-resort | [link](https://github.com/orgs/kubernetes/teams/sig-architecture-misc-use-only-as-a-last-resort) | General Discussion |
-| @kubernetes/sig-architecture-pr-reviews | [link](https://github.com/orgs/kubernetes/teams/sig-architecture-pr-reviews) | PR Reviews |
-| @kubernetes/sig-architecture-proposals | [link](https://github.com/orgs/kubernetes/teams/sig-architecture-proposals) | Design Proposals |
-| @kubernetes/sig-architecture-test-failures | [link](https://github.com/orgs/kubernetes/teams/sig-architecture-test-failures) | Test Failures and Triage |
-
+[subproject-definition]: https://github.com/kubernetes/community/blob/master/governance.md#subprojects
 <!-- BEGIN CUSTOM CONTENT -->
-
-## Additional materials
-
-* [Charter](charter.md)
 
 # Details about SIG-Architecture sub-projects
 
@@ -99,35 +104,30 @@ Establishing and documenting conventions for system and user-facing APIs, define
 
 * [Kubernetes Design and Architecture](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/architecture.md)
 * [Design principles](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/principles.md)
-* [API conventions](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md)
+* [API conventions](/contributors/devel/sig-architecture/api-conventions.md)
 * [API Review process](https://github.com/kubernetes/community/blob/master/sig-architecture/api-review-process.md)
 * [Deprecation policy](https://kubernetes.io/docs/reference/deprecation-policy/)
 
-Please see the [Design documentation](https://github.com/kubernetes-sigs/architecture-tracking/projects/4) and [API Reviews](https://github.com/kubernetes-sigs/architecture-tracking/projects/3) tracking boards to follow the work of this sub-project. Please reach out to folks in the [OWNERS](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/OWNERS) file if you are interested in joining this effort.
+Please see the [API Reviews](https://github.com/orgs/kubernetes/projects/13) tracking board to follow the work of this sub-project. Please reach out to folks in the [OWNERS](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/architecture/OWNERS) file if you are interested in joining this effort.
 
 ## Conformance Definition
 
 Reviewing, approving, and driving changes to the conformance test suite; reviewing, guiding, and creating new conformance profiles
 
-* [Conformance Tests](https://github.com/kubernetes/kubernetes/blob/master/test/conformance/testdata/conformance.txt)
-* [Test Guidelines](https://github.com/kubernetes/community/blob/master/contributors/devel/conformance-tests.md)
+* [Conformance Tests](https://github.com/kubernetes/kubernetes/blob/master/test/conformance/testdata/conformance.yaml)
+* [Test Guidelines](/contributors/devel/sig-architecture/conformance-tests.md)
 
 Please see the [Conformance Test Review](https://github.com/kubernetes-sigs/architecture-tracking/projects/1) tracking board to follow the work for this sub-project. Please reach out to folks in the [OWNERS](https://github.com/kubernetes/kubernetes/blob/master/test/conformance/testdata/OWNERS) file if you are interested in joining this effort. There is a lot of overlap with the [Kubernetes Software Conformance Working Group](https://github.com/cncf/k8s-conformance/blob/master/README-WG.md) with this sub project as well. The github group [cncf-conformance-wg](https://github.com/orgs/kubernetes/teams/cncf-conformance-wg) enumerates the folks on this working group. Look for the `area/conformance` label in the kubernetes repositories to mark [issues](https://github.com/kubernetes/kubernetes/issues?q=is%3Aissue+is%3Aopen+label%3Aarea%2Fconformance) and [PRs](https://github.com/kubernetes/kubernetes/pulls?q=is%3Apr+is%3Aopen+label%3Aarea%2Fconformance) 
-
-## KEP Adoption and Reviews
-
-Develop and drive technical enhancement review process
-
-* [KEP Process](https://github.com/kubernetes/community/blob/master/keps/0001-kubernetes-enhancement-proposal-process.md)
-* [Template](https://github.com/kubernetes/community/blob/master/keps/0000-kep-template.md)
-
-Please see the [KEP Tracking](https://github.com/kubernetes-sigs/architecture-tracking/projects/2) board to follow the work of this sub-project. Please reach out to folks in the [OWNERS](https://github.com/kubernetes/community/blob/master/keps/OWNERS) file if you are interested in joining this effort.
 
 ## Code Organization
 
 Overall code organization, including github repositories and branching methodology, top-level and pkg OWNERS of kubernetes/kubernetes, vendoring
 
-Please reach out to folks in the [OWNERS](https://github.com/kubernetes/kubernetes/blob/master/vendor/OWNERS) file if you are interested in joining this effort.
+Please see the [Code Organization](https://github.com/orgs/kubernetes/projects/27) tracking board to follow the work of this sub-project. Please reach out to folks in the [OWNERS](https://github.com/kubernetes/kubernetes/blob/master/vendor/OWNERS) file if you are interested in joining this effort. Look for the `area/code-organization` label in the kubernetes repositories to mark [issues](https://github.com/kubernetes/kubernetes/issues?q=is%3Aissue+is%3Aopen+label%3Aarea%2Fcode-organization) and [PRs](https://github.com/kubernetes/kubernetes/pulls?q=is%3Apr+is%3Aopen+label%3Aarea%2Fcode-organization). We also use `area/dependency` label as well [issues](https://github.com/kubernetes/kubernetes/issues?q=is%3Aissue+is%3Aopen+label%3Aarea%2Fdependency) and [PRs](https://github.com/kubernetes/kubernetes/pulls?q=is%3Apr+is%3Aopen+label%3Aarea%2Fdependency).
 
+## Production Readiness
+
+Defining and documenting the processes for ensuring production readiness of new and
+promoted features, as well as producing tooling to enforce those processes.
 
 <!-- END CUSTOM CONTENT -->

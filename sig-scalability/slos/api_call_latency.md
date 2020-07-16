@@ -27,15 +27,15 @@ namespaces.
 - As a user of vanilla Kubernetes, I want some guarantee how quickly I get the
 response from an API call.
 - As an administrator of Kubernetes cluster, if I know characteristics of my
-external dependencies of apiserver (e.g custom admission plugins, webhooks and
-initializers) I want to be able to provide guarantees for API calls latency to
-users of my cluster.
+external dependencies of apiserver (e.g custom admission plugins and webhooks)
+I want to be able to provide guarantees for API calls latency to users of my
+cluster.
 
 ### Other notes
 - We obviously can’t give any guarantee in general, because cluster
-administrators are allowed to register custom admission plugins, webhooks
-and/or initializers, which we don’t have any control about and they obviously
-impact API call latencies.
+administrators are allowed to register custom admission plugins or webhooks,
+which we don’t have any control about and they obviously impact API call
+latencies.
 - As a result, we define the SLIs to be very generic (no matter how your
 cluster is set up), but we provide SLO only for default installations (where we
 have control over what apiserver is doing). This doesn’t provide a false
@@ -50,6 +50,11 @@ the amount of work to do (which is number of objects of a given type in a given
 scope) plus some constant overhead. For better tracking of performance, we
 may want to define purely internal SLI of "latency per object". But that
 isn't in near term plans.
+- To recall, SLOs are guaranteed only if thresholds defined in [thresholds file][]
+are satisfied. This is particularly important for this SLO, because it limits
+the number of objects that are returned by LIST calls.
+
+[thresholds file]: https://github.com/kubernetes/community/blob/master/sig-scalability/configs-and-limits/thresholds.md
 
 ### Caveats
 - The SLO has to be satisfied independently from used encoding in user-originated

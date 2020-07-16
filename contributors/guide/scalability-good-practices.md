@@ -1,4 +1,3 @@
-# Scalability Good Practices for Kubernetes contributors
 
 *This document is written for contributors who would like to avoid their code being reverted for performance reasons*
 

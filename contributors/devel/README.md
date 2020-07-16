@@ -15,7 +15,7 @@ Guide](http://kubernetes.io/docs/admin/).
 
 * **Pull Request Process** ([/contributors/guide/pull-requests.md](/contributors/guide/pull-requests.md)): When and why pull requests are closed.
 
-* **Getting Recent Builds** ([getting-builds.md](getting-builds.md)): How to get recent builds including the latest builds that pass CI.
+* **Getting Recent Builds** ([getting-builds.md](sig-release/getting-builds.md)): How to get recent builds including the latest builds that pass CI.
 
 * **Automated Tools** ([automation.md](automation.md)): Descriptions of the automation that is running on our github repository.
 
@@ -24,26 +24,26 @@ Guide](http://kubernetes.io/docs/admin/).
 
 * **Development Guide** ([development.md](development.md)): Setting up your development environment.
 
-* **Testing** ([testing.md](testing.md)): How to run unit, integration, and end-to-end tests in your development sandbox.
+* **Testing** ([testing.md](sig-testing/testing.md)): How to run unit, integration, and end-to-end tests in your development sandbox.
 
-* **Conformance Testing** ([conformance-tests.md](conformance-tests.md))
+* **Conformance Testing** ([conformance-tests.md](sig-architecture/conformance-tests.md))
   What is conformance testing and how to create/manage them.
 
-* **Hunting flaky tests** ([flaky-tests.md](flaky-tests.md)): We have a goal of 99.9% flake free tests.
+* **Hunting flaky tests** ([flaky-tests.md](sig-testing/flaky-tests.md)): We have a goal of 99.9% flake free tests.
   Here's how to run your tests many times.
 
-* **Logging Conventions** ([logging.md](logging.md)): Glog levels.
+* **Logging Conventions** ([logging.md](sig-instrumentation/logging.md)): klog levels.
 
-* **Profiling Kubernetes** ([profiling.md](profiling.md)): How to plug in go pprof profiler to Kubernetes.
+* **Profiling Kubernetes** ([profiling.md](sig-scalability/profiling.md)): How to plug in go pprof profiler to Kubernetes.
 
 * **Instrumenting Kubernetes with a new metric**
-  ([instrumentation.md](instrumentation.md)): How to add a new metrics to the
+  ([instrumentation.md](sig-instrumentation/instrumentation.md)): How to add a new metrics to the
   Kubernetes code base.
 
 * **Coding Conventions** ([coding-conventions.md](../guide/coding-conventions.md)):
   Coding style advice for contributors.
 
-* **Document Conventions** ([how-to-doc.md](how-to-doc.md))
+* **Document Conventions** ([The Kubernetes documentation](https://github.com/kubernetes/website))
   Document style advice for contributors.
 
 * **Running a cluster locally** ([running-locally.md](running-locally.md)):
@@ -57,10 +57,10 @@ Guide](http://kubernetes.io/docs/admin/).
 * **Annotations** ([Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)): are for attaching arbitrary non-identifying metadata to objects.
   Programs that automate Kubernetes objects may use annotations to store small amounts of their state.
 
-* **API Conventions** ([api-conventions.md](api-conventions.md)):
+* **API Conventions** ([api-conventions.md](sig-architecture/api-conventions.md)):
   Defining the verbs and resources used in the Kubernetes API.
 
-* **API Client Libraries** ([client-libraries.md](client-libraries.md)):
+* **API Client Libraries** ([Client Libraries](https://kubernetes.io/docs/reference/using-api/client-libraries/)):
   A list of existing client libraries, both supported and user-contributed.
 
 

@@ -11,6 +11,8 @@ more Subprojects owned by SIGs).
 Because a working group is an official part of the Kubernetes project it is subject to steering committee oversight
 over its formation and disbanding.
 
+The tactical checklist to creation and/or retirement is found in the [SIG / WG Lifecycle] document.
+
 ## Goals of the process
 
 - An easy-to-navigate process for those wishing to establish and eventually disband a new Working Group
@@ -24,7 +26,7 @@ over its formation and disbanding.
 - Changing the status of existing Working Groups/SIGs/Sub-projects
 
 ## Working Group Relationship To SIGs
-Assets owned by the Kubernetes project (e.g. code, docs, blogs, processes, etc) are owned and 
+Assets owned by the Kubernetes project (e.g. code, docs, blogs, processes, etc) are owned and
 managed by [SIGs](sig-governance.md).  The exception to this is specific assets that may be owned
 by Working Groups, as outlined below.
 
@@ -36,13 +38,16 @@ own the following types of assets:
 - Discussion Forum Groups
 
 Working Groups are distinct from SIGs in that they are intend to:
- 
+
 - facilitate collaboration across SIGs
 - facilitate an exploration of a problem / solution through a group with minimal governmental overhead
 
 Working Groups will typically have stake holders whose participation is in the
 context of one or more SIGs.  These SIGs should be documented as stake holders of the Working Group
-(see Creation Process).
+(see Creation Process) in sigs.yaml. 
+
+Updates  
+Working Group Organizers are required to give updates to their respective sponsoring SIG Chairs. Organizers are responsible for presenting the Steering Committee with the yearly [annual report].
 
 ## Is it a Working Group? Yes, if...
 - It does not own any code
@@ -63,31 +68,17 @@ should eventually be reflected in a pull request on sigs.yaml:
 1. What is the artifact that this group will deliver, and to whom?
 1. How does the group know when the problem solving process is completed, and it is time for the Working Group to
    dissolve?
-1. Who are all of the stakeholders involved in this problem this group is trying to solve (SIGs, steering committee,
-   other Working Groups)?
+1. Who are all of the stakeholder SIGs involved in this problem this group is trying to solve?
 1. What are the meeting mechanics (frequency, duration, roles)?
 1. Does the goal of the Working Group represent the needs of the project as a whole, or is it focused on the interests
    of a narrow set of contributors or companies?
 1. Who will chair the group, and ensure it continues to meet these requirements?
 1. Is diversity well-represented in the Working Group?
 
-Once the above questions have been answered, the pull request against sigs.yaml can be created. Once the generator
-is run, this will in turn create the OWNERS_ALIASES file, readme files, and the main SIGs list.  The minimum
-requirements for that are:
+Please note that all working group organizers and holders of other leadership
+roles must be [community members].
 
-- name
-- directory
-- mission statement
-- chair information
-- meeting information
-- contact methods
-- any [sig](sig-governance.md) stakeholders
-
-The pull request should be labeled with any SIG stakeholders and committee/steering. And since GitHub notifications
-are not a reliable means to contact people, an email should be sent to the mailing lists for the stakeholder SIGs,
-and the steering committee with a link to the PR. A member of the community admin team will place a /hold on it
-until it has an LGTM from at least one chair from each of the stakeholder SIGs, and a simple majority of the steering
-committee.
+Once the above questions have been answered, complete the rest of the checklist in the [SIG / WG Lifecycle] document
 
 Once merged, the Working Group is officially chartered until it either completes its stated goal, or disbands
 voluntarily (e.g. due to new facts, member attrition, change in direction, etc). Working groups should strive to
@@ -115,7 +106,10 @@ within the Working Group, and [sigs.yaml](/sigs.yaml) should be updated.
 References
 
 - [1] https://github.com/kubernetes/community/pull/1994
-- [2] https://groups.google.com/a/kubernetes.io/d/msg/steering/zEY93Swa_Ss/C0ziwjkGCQAJ 
+- [2] https://groups.google.com/a/kubernetes.io/d/msg/steering/zEY93Swa_Ss/C0ziwjkGCQAJ
 
 
-[repository document]: https://github.com/kubernetes/community/blob/master/github-management/kubernetes-repositories.md
+[SIG / WG Lifecycle]: /sig-wg-lifecycle.md
+[repositories document]: https://github.com/kubernetes/community/blob/master/github-management/kubernetes-repositories.md
+[community members]: /community-membership.md
+[annual report]: ./annual-reports.md

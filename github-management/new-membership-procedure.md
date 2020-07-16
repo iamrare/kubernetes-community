@@ -51,8 +51,8 @@ required to be eligible to sponsor a new member. These requirements are:
   then the sponsor should be a member of either that org, or main Kubernetes
   org (as members of the main org have implicit membership in other orgs).
 
-- Sponsors must be a reviewer or approver in at least one OWNERS file in any
-  Kubernetes GitHub org.
+- Sponsors must be a reviewer or approver in at least one OWNERS file in
+  either the [Kubernetes GitHub org] or the org they are sponsoring for.
 
 - Sponsors must be from multiple member companies to demonstrate integration
   across community
@@ -92,12 +92,23 @@ resolving. One PR can be used to resolve multiple membership requests.
 1. Add a note to the original membership request stating that a membership
 invite will be sent out once the PR has merged.
 
-1. Wait for a member of the GitHub administration team to approve the PR for
-merge.
+1. Wait for another New Membership Coordinator or a member of the
+GitHub administration team to lgtm the PR for merge.
 
+## Approving New Membership Requests
+
+New Membership Coordinators and members of the GitHub administration team
+have approval privileges for the GitHub config in the
+[kubernetes/org] repo.
+
+New Membership Coordinators should ensure that they approve PRs that
+_only_ update members. Approval for any other config changes (like
+GitHub teams) should be delegated to the respective SIG/WG/UG leads
+or the GitHub administration team.
 
 
 
 [community membership]: /community-membership.md
 [k-dev]: https://groups.google.com/forum/#!forum/kubernetes-dev
 [kubernetes/org]: https://git.k8s.io/org/
+[Kubernetes GitHub org]: https://github.com/kubernetes

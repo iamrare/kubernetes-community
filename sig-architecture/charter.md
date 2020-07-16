@@ -17,12 +17,12 @@ The Architecture SIG maintains and evolves the design principles of Kubernetes, 
 - *API conventions*
 - *Design principles*
 - *Deprecation policy*
+- *Kubernetes Enhancement Proposal (KEP) process*
 
 #### Cross-cutting and Externally Facing Processes
 
 - API review process
 - Conformance test review and management
-- The Kubernetes Enhancement Proposal (KEP) process and KEP reviews
 - Design documentation management
 - Deprecation policy management
 - Architectural initiative backlog management
@@ -50,12 +50,6 @@ and opts-in to updates and modifications to [sig-governance].
 ### Subproject Creation
 
 Federation of Subprojects as defined in [sig-governance]
-
-### To do
-
-- There remains lack of consensus in this SIG regarding the need for company and other diversity in the leadership of this SIG and it's subprojects, beyond what is contained in [sig-governance]. This still needs to be resolved and documented in this charter. Further details may be found [here].
-
-- It remains unspecified whether and how SIG-Architecture gets involved in resolving technical [conflicts] within and between other SIG's, and this SIG's sub-projects. This still needs to be resolved and documented in this charter.
 
 [sig-governance]: https://github.com/kubernetes/community/blob/master/committee-steering/governance/sig-governance.md
 [sig-subprojects]: https://github.com/kubernetes/community/blob/master/sig-architecture/README.md#subprojects

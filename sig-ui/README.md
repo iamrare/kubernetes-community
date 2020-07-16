@@ -10,30 +10,40 @@ To understand how this file is generated, see https://git.k8s.io/community/gener
 
 Covers all things UI related. Efforts are centered around Kubernetes Dashboard: a general purpose, web-based UI for Kubernetes clusters. It allows users to manage applications running in the cluster and troubleshoot them, as well as manage the cluster itself.
 
+The [charter](charter.md) defines the scope and governance of the UI Special Interest Group.
+
 ## Meetings
-* Regular SIG Meeting: [Thursdays at 18:00 CET (Central European Time)](https://groups.google.com/forum/#!forum/kubernetes-sig-ui) (weekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=18:00&tz=CET%20%28Central%20European%20Time%29).
+* Regular SIG Meeting: [Thursdays at 09:00 PT (Pacific Time)](https://groups.google.com/forum/#!forum/kubernetes-sig-ui) (bi-weekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=09:00&tz=PT%20%28Pacific%20Time%29).
   * [Meeting notes and Agenda](https://docs.google.com/document/d/1PwHFvqiShLIq8ZpoXvE3dSUnOv1ts5BTtZ7aATuKd-E/edit?usp=sharing).
+  * [Meeting recordings](https://www.youtube.com/watch?v=r3pL8i3wPhk&list=PL69nYSiGNLP35H5MZbg9OU6pqpfWgtbLm).
 
 ## Leadership
 
 ### Chairs
 The Chairs of the SIG run operations and processes governing the SIG.
 
-* Dan Romlein (**[@danielromlein](https://github.com/danielromlein)**), Google
-* Sebastian Florek (**[@floreks](https://github.com/floreks)**), Fujitsu
+* Sebastian Florek (**[@floreks](https://github.com/floreks)**), Loodse
+* Jeffrey Sica (**[@jeefy](https://github.com/jeefy)**), Red Hat
+* Marcin Maciaszczyk (**[@maciaszczykm](https://github.com/maciaszczykm)**), Loodse
+
+## Emeritus Leads
+
+* Dan Romlein (**[@danielromlein](https://github.com/danielromlein)**)
 
 ## Contact
-* [Slack](https://kubernetes.slack.com/messages/sig-ui)
-* [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-ui)
-* [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Fui)
+- Slack: [#sig-ui](https://kubernetes.slack.com/messages/sig-ui)
+- [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-ui)
+- [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Fui)
 
 ## Subprojects
 
-The following subprojects are owned by sig-ui:
-- **dashboard**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/dashboard/master/OWNERS
+The following [subprojects][subproject-definition] are owned by sig-ui:
+### dashboard
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/dashboard-metrics-scraper/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/dashboard/master/OWNERS
 
+[subproject-definition]: https://github.com/kubernetes/community/blob/master/governance.md#subprojects
 <!-- BEGIN CUSTOM CONTENT -->
 
 <!-- END CUSTOM CONTENT -->

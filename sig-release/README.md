@@ -8,59 +8,81 @@ To understand how this file is generated, see https://git.k8s.io/community/gener
 --->
 # Release Special Interest Group
 
+Ensure quality Kubernetes releases
 
 The [charter](charter.md) defines the scope and governance of the Release Special Interest Group.
 
 ## Meetings
-* Regular SIG Meeting: [Tuesdays at 21:00 UTC](https://docs.google.com/document/d/1FQx0BPlkkl1Bn0c9ocVBxYIKojpmrS1CFP5h0DI68AE/edit) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=21:00&tz=UTC).
-  * [Meeting notes and Agenda](https://docs.google.com/document/d/1Fu6HxXQu8wl6TwloGUEOXVzZ1rwZ72IAhglnaAMCPqA/edit?usp=sharing).
-  * [Meeting recordings](https://www.youtube.com/watch?v=I0KbWz8MTMk&list=PL69nYSiGNLP3QKkOsDsO6A0Y1rhgP84iZ).
+* Regular SIG Meeting: [Mondays at 15:00 UTC](https://zoom.us/j/327142148) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=15:00&tz=UTC).
+  * [Meeting notes and Agenda](https://bit.ly/k8s-sig-release-meeting).
+  * [Meeting recordings](https://bit.ly/k8s-sig-release-videos).
 
 ## Leadership
 
 ### Chairs
 The Chairs of the SIG run operations and processes governing the SIG.
 
-* Caleb Miles (**[@calebamiles](https://github.com/calebamiles)**), Google
-* Stephen Augustus (**[@justaugustus](https://github.com/justaugustus)**), Red Hat
+* Stephen Augustus (**[@justaugustus](https://github.com/justaugustus)**), VMware
 * Tim Pepper (**[@tpepper](https://github.com/tpepper)**), VMware
+
+### Technical Leads
+The Technical Leads of the SIG establish new subprojects, decommission existing
+subprojects, and resolve cross-subproject technical issues and decisions.
+
+* Jorge Alarcon Ochoa (**[@alejandrox1](https://github.com/alejandrox1)**), Searchable AI
+* Sascha Grunert (**[@saschagrunert](https://github.com/saschagrunert)**), SUSE
 
 ## Emeritus Leads
 
-* Jaice Singer DuMars (**[@jdumars](https://github.com/jdumars)**), Google
+* Caleb Miles (**[@calebamiles](https://github.com/calebamiles)**)
+* Jaice Singer DuMars (**[@jdumars](https://github.com/jdumars)**)
 
 ## Contact
-* [Slack](https://kubernetes.slack.com/messages/sig-release)
-* [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-release)
-* [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Frelease)
+- Slack: [#sig-release](https://kubernetes.slack.com/messages/sig-release)
+- [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-release)
+- [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Frelease)
+- GitHub Teams:
+    - [@kubernetes/kubernetes-milestone-maintainers](https://github.com/orgs/kubernetes/teams/kubernetes-milestone-maintainers) - Milestone Maintainers
+    - [@kubernetes/release-managers](https://github.com/orgs/kubernetes/teams/release-managers) - Release Managers
+    - [@kubernetes/sig-release](https://github.com/orgs/kubernetes/teams/sig-release) - SIG Release Members
+    - [@kubernetes/sig-release-admins](https://github.com/orgs/kubernetes/teams/sig-release-admins) - Admins for SIG Release repositories
 
 ## Subprojects
 
-The following subprojects are owned by sig-release:
-- **hyperkube**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/build/debian-hyperkube-base/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/cmd/hyperkube/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/images/hyperkube/OWNERS
-- **release**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/release/master/OWNERS
-- **sig-release**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/sig-release/master/OWNERS
+The following [subprojects][subproject-definition] are owned by sig-release:
+### hyperkube
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/build/debian-hyperkube-base/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/images/hyperkube/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/cmd/hyperkube/OWNERS
+### licensing
+The Licensing subproject is responsible for analyzing/reporting/remediating licensing concerns within the Kubernetes project orgs.
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/sig-release/master/licensing/OWNERS
+### release-engineering
+The Release Engineering subproject is responsible for the [process/procedures](https://github.com/kubernetes/sig-release/tree/master/release-engineering) and [tools](https://github.com/kubernetes/release) used to create/maintain Kubernetes release artifacts.
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/k8s-container-image-promoter/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes-sigs/release-notes/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/publishing-bot/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/release/master/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/sig-release/master/release-engineering/OWNERS
+- **Contact:**
+  - Slack: [#release-management](https://kubernetes.slack.com/messages/release-management)
+- **Meetings:**
+  - Regular SIG Meeting: [Mondays at 15:00 UTC](https://zoom.us/j/240812475) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=15:00&tz=UTC).
+    - [Meeting notes and Agenda](https://bit.ly/k8s-releng-meeting).
+    - [Meeting recordings](https://bit.ly/k8s-sig-release-videos).
+### release-team
+The Kubernetes Release Team is responsible for the day-to-day work required to successfully create releases of Kubernetes.
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/sig-release/master/release-team/OWNERS
+### sig-release
+Documents and processes related to SIG Release
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/sig-release/master/OWNERS
 
-## GitHub Teams
-
-The below teams can be mentioned on issues and PRs in order to get attention from the right people.
-Note that the links to display team membership will only work if you are a member of the org.
-
-| Team Name | Details | Description |
-| --------- |:-------:| ----------- |
-| @kubernetes/sig-release | [link](https://github.com/orgs/kubernetes/teams/sig-release) | SIG Release Members |
-| @kubernetes/sig-release-admins | [link](https://github.com/orgs/kubernetes/teams/sig-release-admins) | Admins for SIG Release repositories |
-| @kubernetes/kubernetes-milestone-maintainers | [link](https://github.com/orgs/kubernetes/teams/kubernetes-milestone-maintainers) | Milestone Maintainers |
-| @kubernetes/kubernetes-release-managers | [link](https://github.com/orgs/kubernetes/teams/kubernetes-release-managers) | Release Managers |
-
+[subproject-definition]: https://github.com/kubernetes/community/blob/master/governance.md#subprojects
 <!-- BEGIN CUSTOM CONTENT -->
 ---
 

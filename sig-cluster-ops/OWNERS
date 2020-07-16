@@ -1,6 +1,0 @@
-reviewers:
-  - sig-cluster-ops-leads
-approvers:
-  - sig-cluster-ops-leads
-labels:
-  - sig/cluster-ops

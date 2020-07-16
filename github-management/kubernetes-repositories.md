@@ -24,7 +24,6 @@ against the kubernetes/org repo.
   * [Rules](#rules-1)
 - [Removing Repositories](#removing-repositories)
   * [Grounds for removal](#grounds-for-removal)
-  * [Procedure for removal](#procedure-for-removal)
 - [FAQ](#faq)
 
 ## Associated Repositories
@@ -65,7 +64,7 @@ from a central body (e.g. steering committee or sig-architecture)
 
 ### Rules for new repositories
 
-   * For now all repos will live in github.com/kubernetes-sigs/\<project-name\>.
+   * For now all repos will live in `github.com/kubernetes-sigs/\<project-name\>`.
    * Must contain the topic for the sponsoring SIG - e.g.
      `k8s-sig-api-machinery`.  (Added through the *Manage topics* link on the
 repo page.)
@@ -74,7 +73,8 @@ repo page.)
      repositories must use the Creative Commons License version 4.0.
    * Must adopt the CNCF CLA bot, merge bot and Kubernetes PR commands/bots.
    * All OWNERS of the project must also be active SIG members.
-   * SIG membership must vote using lazy consensus to create a new repository
+   * Must be approved by the process spelled out in the SIG's charter and a
+   publicly linkable written decision should be available for the same.
    * SIG must already have identified all of their existing subprojects and
      code, with valid OWNERS files, in
 [`sigs.yaml`](https://github.com/kubernetes/community/blob/master/sigs.yaml)
@@ -98,6 +98,13 @@ the developers who could not be reached
      [@caniszczyk](https://github.com/caniszczyk) for review of third party deps
    * Boilerplate text across all files should attribute copyright as follows:
      `"Copyright <Project Authors>"` if no CLA was in place prior to donation
+   * Additions of [the standard Kubernetes header](https://git.k8s.io/kubernetes/hack/boilerplate/boilerplate.go.txt)
+     to code created by the contributors can occur post-transfer, but should
+     ideally occur shortly thereafter.
+
+Note that copyright notices should only be modified or removed by the people or
+organizations named in the notice. See [the FAQ below](#faq) for more information
+regarding copyrights and copyright notices.
 
 ## Core Repositories
 
@@ -108,7 +115,9 @@ in official Kubernetes releases. Additionally, the kubernetes.io website, k8s.io
 machinery, and other project-wide infrastructure will remain in the kubernetes
 github organization.
 
-### Goals Create a broader base of repositories than the existing
+### Goals
+
+Create a broader base of repositories than the existing
 gh/kubernetes/kubernetes so that the project can scale. Present expectations
 about the centrality and importance of the repository in the Kubernetes
 ecosystem. Carries the endorsement of the Kubernetes community.
@@ -152,26 +161,6 @@ following criteria:
 Associated repositories are much more loosely associated with the Kubernetes
 project and are generally not subject to removal, except under exceptional
 circumstances (e.g. a code of conduct violation).
-
-### Procedure for removal
-
-When a repository has been deemed eligible for removal, we take the following
-steps:
-
-    * Ownership of the repo is transferred to the [kubernetes-retired] GitHub
-      organization
-    * The repo description is edited to start with the phrase "[EOL]"
-    * All open issues and PRs are closed
-    * All external collaborators are removed
-    * All webhooks, apps, integrations or services are removed
-    * GitHub Pages are disabled
-    * The repo is marked as archived using [GitHub's archive feature]
-    * The removal is announced on the kubernetes-dev mailing list and community
-      meeting
-
-This maintains the complete record of issues, PRs and other contributions,
-leaves the repository read-only, and makes it clear that the repository should
-be considered retired and unmaintained.
 
 ## FAQ
 
@@ -218,6 +207,16 @@ associated projects. Many things seem vague. Help!**
 True, we need to improve these things. For now, do the best you can to conform
 to the spirit of the proposal (e.g. post the code of conduct, etc)
 
-[GitHub's archive feature]:
-https://help.github.com/articles/archiving-a-github-repository/
-[kubernetes-retired]: https://github.com/kubernetes-retired
+**When I donate my project, am I transferring my copyrights?**
+
+No. All contributors retain ownership of their copyrights in the code they donate.
+Instead, they are granting a license to the project (that's the 'L' in 'CLA').
+
+For consistency and efficiency in complying with notice requirements, code that is
+donated to a Kubernetes repo should use [the standard header](https://git.k8s.io/kubernetes/hack/boilerplate/boilerplate.go.txt)
+referencing "The Kubernetes Authors". That doesn't mean you are transferring your
+copyright. Instead, it's a general reference to the fact that the copyrights remain
+owned by the authors of Kubernetes.
+
+Note that you should _never_ modify or remove a third party's copyright notice if
+you are not authorized by them to do so.

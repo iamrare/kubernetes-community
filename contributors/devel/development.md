@@ -115,16 +115,36 @@ environment. Recent Linux distros should work out-of-the-box.
 macOS ships with outdated BSD-based tools. We recommend installing [macOS GNU
 tools].
 
+Developers with Windows machines have two choices available to run the needed tools:
+1. If you're using Windows 10 20h1, then you may [install WSL2] and your distro of choice
+2. If you're using a previous version of Windows, then set up a Linux VM with at least 8GB of memory and 60GB of disk space.
+
+In either case, the same Linux development tools and Kubernetes source code are needed. Start your WSL2 distro or connect 
+to your Linux VM and follow the steps below to install the required tools.
+
+### make
+
+Kubernetes local build system requires `make` command to be present in your corresponding development platform.
+
+To install `make` command:
+- OS X
+    + `xcode-select --install` (Following command will install CLI Tools to your local development environment)
+- Linux
+    + `sudo apt-get install build-essential` (Following command will install essential commands like `gcc`, `make` etc.)
+
+### Docker
+
+Kubernetes Development requires some of the verification tests which are ran through Docker. Hence, you will need [Docker](https://docs.docker.com/v17.09/engine/installation/) Pre-Installed on your development environment. 
+
 ### rsync
 
 Kubernetes build system requires `rsync` command present in the development
 platform.
 
-### etcd
+### jq
 
-Kubernetes maintains state in [`etcd`][etcd-latest], a distributed key store.
-
-Please [install it locally][etcd-install] to run local integration tests.
+Kube-apiserver requires `jq` to be installed to successfully build in your local environment. 
+The [jq installation guide](https://stedolan.github.io/jq/download/) provides detailed instructions for supported platforms.
 
 ### Go
 
@@ -141,7 +161,12 @@ development environment, please [set one up](http://golang.org/doc/code.html).
 | 1.8            | 1.8.3       |
 | 1.9            | 1.9.1       |
 | 1.10           | 1.9.1       |
-| 1.11+          | 1.10.2      |
+| 1.11           | 1.10.2      |
+| 1.12           | 1.10.4      |
+| 1.13           | 1.11.13     |
+| 1.14 - 1.16    | 1.12.9      |
+| 1.17 - 1.18    | 1.13.9      |
+| 1.18+          | 1.14.4      |
 
 Ensure your GOPATH and PATH have been configured in accordance with the Go
 environment instructions.
@@ -153,18 +178,124 @@ images.
 
 - The image for cross compiling in [build/build-image/cross].
   The `VERSION` file and `Dockerfile`.
-- Update the desired Go version in Dockerfile for the [e2e][e2e-image] and [test][test-image].
-  This requires pushing the [e2e][e2e-image] and [test][test-image] images that are `FROM` the desired Go version.
 - The cross tag `KUBE_BUILD_IMAGE_CROSS_TAG` in [build/common.sh].
+- The `go_version` in the [`go_register_toolchains`](https://git.k8s.io/kubernetes/build/root/WORKSPACE) bazel rule.
+- The desired Go version in
+  [test/images/Makefile](https://git.k8s.io/kubernetes/test/images/Makefile).
 
+### PyYAML
+
+Some Kubernetes verification tests use [PyYAML](https://pyyaml.org/) and it therefore needs to be installed to successfully run all verification tests in your local environment. 
+You can use the [PyYAML documentation](https://pyyaml.org/wiki/PyYAMLDocumentation) to find the installation instructions.
+
+### Quick Start
+
+The following section is a quick start on how to build Kubernetes locally, for more detailed information you can see [kubernetes/build](https://git.k8s.io/kubernetes/build/README.md). Before you start you will need to clone a local Kubernetes code base, refer to [GitHub workflow](#github-workflow) for details on how to set this up.
+
+The best way to validate your current setup is to build a small part of Kubernetes. This way you can address issues without waiting for the full build to complete. To build a specific part of Kubernetes use the `WHAT` environment variable to let the build scripts know you want to build only a certain package/executable.
+
+```sh
+make WHAT=cmd/{$package_you_want}
+```
+
+*Note:* This applies to all top level folders under kubernetes/cmd.
+
+So for the cli, you can run:
+
+```sh
+make WHAT=cmd/kubectl
+```
+
+If everything checks out you will have an executable in the `_output/bin` directory to play around with.
+
+*Note:* If you are using `CDPATH`, you must either start it with a leading colon, or unset the variable. The make rules and scripts to build require the current directory to come first on the CD search path in order to properly navigate between directories.
+
+To build everything:
+```sh
+cd $working_dir/kubernetes
+
+# This is equivalent to calling 'make all'
+make
+```
+
+To remove the limit on the number of errors the Go compiler reports (default
+limit is 10 errors):
+```sh
+make GOGCFLAGS="-e"
+```
+
+To build with optimizations disabled (enables use of source debug tools):
+
+```sh
+make GOGCFLAGS="-N -l"
+```
+
+To build binaries for all platforms:
+
+```sh
+make cross
+```
+
+To build binaries for a specific platform, add `KUBE_BUILD_PLATFORMS=<os>/<arch>`. For example:
+
+```sh
+make cross KUBE_BUILD_PLATFORMS=windows/amd64
+```
+
+#### Install etcd
+
+```sh
+cd $working_dir/kubernetes
+
+# Installs in ./third_party/etcd
+hack/install-etcd.sh
+
+# Add to PATH
+echo export PATH="\$PATH:$working_dir/kubernetes/third_party/etcd" >> ~/.profile
+```
+
+#### Test
+
+```sh
+cd $working_dir/kubernetes
+
+# Run all the presubmission verification. Then, run a specific update script (hack/update-*.sh)
+# for each failed verification. For example:
+#   hack/update-gofmt.sh (to make sure all files are correctly formatted, usually needed when you add new files)
+#   hack/update-bazel.sh (to update bazel build related files, usually needed when you add or remove imports)
+make verify
+
+# Alternatively, run all update scripts to avoid fixing verification failures one by one.
+make update
+
+# Run every unit test
+make test
+
+# Run package tests verbosely
+make test WHAT=./pkg/apis/core/helper GOFLAGS=-v
+
+# Run integration tests, requires etcd
+# For more info, visit https://git.k8s.io/community/contributors/devel/sig-testing/testing.md#integration-tests
+make test-integration
+
+# Run e2e tests by building test binaries, turn up a test cluster, run all tests, and tear the cluster down
+# Note: running all e2e tests takes a LONG time! To run specific e2e tests, visit:
+# ./e2e-tests.md#building-kubernetes-and-running-the-tests
+make test-e2e
+```
+
+See the [testing guide](./sig-testing/testing.md) and [end-to-end tests](./sig-testing/e2e-tests.md)
+for additional information and scenarios.
+
+Run `make help` for additional information on these make targets.
 
 #### Dependency management
 
-Kubernetes uses [`godep`](https://github.com/tools/godep) to manage
+Kubernetes uses [go modules](https://github.com/golang/go/wiki/Modules) to manage
 dependencies.
 
 Developers who need to manage dependencies in the `vendor/` tree should read
-the docs on [using godep to manage dependencies](godep.md).
+the docs on [using go modules to manage dependencies](/contributors/devel/sig-architecture/vendor.md).
 
 
 ## Build with Bazel/Gazel
@@ -181,14 +312,13 @@ To check out code to work on, please refer to [this guide](/contributors/guide/g
 [macOS GNU tools]: https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x
 [build/build-image/cross]: https://git.k8s.io/kubernetes/build/build-image/cross
 [build/common.sh]: https://git.k8s.io/kubernetes/build/common.sh
-[e2e-image]: https://git.k8s.io/test-infra/jenkins/e2e-image
 [etcd-latest]: https://coreos.com/etcd/docs/latest
-[etcd-install]: testing.md#install-etcd-dependency
+[etcd-install]: sig-testing/integration-tests.md#install-etcd-dependency
 <!-- https://github.com/coreos/etcd/releases -->
 [go-workspace]: https://golang.org/doc/code.html#Workspaces
 [issue]: https://github.com/kubernetes/kubernetes/issues
 [kubectl user guide]: https://kubernetes.io/docs/user-guide/kubectl
 [kubernetes.io]: https://kubernetes.io
 [mercurial]: http://mercurial.selenic.com/wiki/Download
-[test-image]: https://git.k8s.io/test-infra/jenkins/test-image
-[Build with Bazel]: bazel.md
+[Build with Bazel]: sig-testing/bazel.md
+[install WSL2]: https://docs.microsoft.com/en-us/windows/wsl/wsl2-install

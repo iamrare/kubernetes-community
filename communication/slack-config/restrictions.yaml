@@ -1,0 +1,45 @@
+restrictions:
+  - path: users.yaml
+    users: true
+  - path: channels.yaml
+    channels:
+      - ".*"
+    template: true
+  - path: usergroups.yaml
+    usergroups:
+      - ".*"
+  - path: template.yaml
+    template: true
+  - path: "sig-architecture/*.yaml"
+    channels:
+      - "^sig-architecture$"
+      - "^enhancements$"
+      - "^k8s-code-organization$"
+      - "^k8s-conformance$"
+      - "^prod-readiness$"
+    usergroups:
+      - "^enhancements-owners$"
+  - path: "sig-docs/*.yaml"
+    channels:
+      - "^kubernetes-docs-[a-z]{2}(-maintainers)?$"
+  - path: "sig-release/*.yaml"
+    channels:
+      - "^sig-release$"
+      - "^release-"
+    usergroups:
+      - "^release-"
+  - path: "sig-network/*.yaml"
+    channels:
+      - "^sig-network-.*$"
+  - path: "sig-storage/*.yaml"
+    channels:
+      - "^sig-storage$"
+      - "^csi$"
+      - "^csi-"
+  - path: "sig-cloud-provider/*.yaml"
+    channels:
+      - "^sig-cloud-provider$"
+      - "^cloud-provider-extraction$"
+      - "^provider-"
+      - "^apiserver-network-proxy$"
+  - path: "**/*" # prevent any other file from containing anything

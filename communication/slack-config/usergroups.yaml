@@ -1,0 +1,83 @@
+# This file contains a top-level list of Slack User Groups.
+# SIG-specific User Groups may be defined within a SIG's subdirectory
+#
+# e.g., @release-managers is defined in sig-release/usergroups.yaml
+
+usergroups:
+  - name: apac-coordinators
+    long_name: APAC Coordinators
+    description: APAC Coordinator group.
+    channels:
+      - sig-contribex
+    members:
+      - alisondy
+      - aravindputrevu
+      - idealhack
+      - nikhita
+      - palnabarun
+      - pensu91
+      - sammy
+      - "Sujay Pillai"
+      - TaoBeier
+
+  - name: contributor-comms
+    long_name: Upstream Marketing
+    description: Upstream Marketing group.
+    channels:
+      - sig-contribex
+    members:
+      - chrisshort
+      - jonasrosland
+      - mbbroberg
+      - onlydole
+      - paris
+      - "Rin Oliver"
+      - simplytunde
+      - Tunde
+      - kaslin
+
+  - name: test-infra-oncall
+    external: true
+
+  - name: velero-maintainers
+    long_name: Velero Maintainers
+    description: Velero Maintainers group.
+    channels:
+      - velero 
+    members:
+      - ashish-amarnath
+      - carlisia
+      - nrb
+
+  - name: youtube-admins
+    long_name: YouTube Admins
+    description: YouTube Admin group. Ping for a YouTube-specific issue
+    channels:
+      - sig-contribex
+    members:
+      - alejandrox1
+      - castrojo
+      - idealhack
+      - idvoretskyi
+      - jdumars
+      - jeefy
+      - markyjackson-taulia
+      - mrbobbytables
+      - nzoueidi
+      - onlydole
+      - paris
+
+  - name: zoom-admins
+    long_name: Zoom Admins
+    description: Zoom Admin group. Ping for a Zoom-specific issue
+    channels:
+      - sig-contribex
+    members:
+      - alejandrox1
+      - castrojo
+      - idealhack
+      - markyjackson-taulia
+      - mrbobbytables
+      - nzoueidi
+      - onlydole
+      - paris

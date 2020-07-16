@@ -28,16 +28,16 @@ various tasks.
 
 This team (**[@kubernetes/owners](https://github.com/orgs/kubernetes/teams/owners)**) is as follows:
 * Aaron Crickenberger (**[@spiffxp](https://github.com/spiffxp)**, US Pacific)
-* Caleb Miles (**[@calebamiles](https://github.com/calebamiles)**, US Pacific)
+* Bob Killen (**[@mrbobbytables](https://github.com/mrbobbytables)**, US Eastern)
 * Christoph Blecker (**[@cblecker](https://github.com/cblecker)**, CA Pacific)
 * Erick Fejta (**[@fejta](https://github.com/fejta)**, US Pacific)
-* Garrett Rodrigues (**[@grodrigues3](https://github.com/grodrigues3)**, US Pacific)
+* Nikhita Raghunath (**[@nikhita](https://github.com/nikhita)**, Indian Standard Time)
 * Ihor Dvoretskyi (**[@idvoretskyi](https://github.com/idvoretskyi)**, UA Eastern European)
 
 This team is responsible for holding Org Owner privileges over all the active
 Kubernetes orgs, and will take action in accordance with our polices and
 procedures. All members of this team are subject to the Kubernetes
-[security embargo policy](https://git.k8s.io/sig-release/security-release-process-documentation/security-release-process.md#embargo-policy).
+[security embargo policy].
 
 Nominations to this team will come from the Contributor Experience SIG, and
 require confirmation by the Steering Committee before taking effect. Time zones
@@ -53,9 +53,12 @@ community members, guiding them through the
 [process](new-membership-procedure.md) to request membership to a Kubernetes
 GitHub organization.
 
+They also have approval privileges for adding new members to the GitHub config.
+
 Our current coordinators are:
-* Bob Killen (**[@mrbobbytables](https://github.com/mrbobbytables)**, US Eastern)
+* Naeil Ezzoueidi (**[@nzoueidi](https://github.com/nzoueidi)**, Central European)
 * Stephen Augustus (**[@justaugustus](https://github.com/justaugustus)**, US Eastern)
+* Yang Li (**[@idealhack](https://github.com/idealhack)**, Japan Standard Time)
 
 ## Project Owned Organizations
 
@@ -110,3 +113,5 @@ repositories and organizations:
 - [label_sync](https://git.k8s.io/test-infra/label_sync): Add, modify, delete,
   and migrate labels across an entire organization based on a defined YAML
   configuration
+
+[security embargo policy]: https://git.k8s.io/security/private-distributors-list.md#embargo-policy

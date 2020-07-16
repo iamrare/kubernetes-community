@@ -10,61 +10,78 @@ To understand how this file is generated, see https://git.k8s.io/community/gener
 
 Covers best practices for cluster observability through metrics, logging, and events across all Kubernetes components and development of relevant components such as Heapster and kube-state-metrics. Coordinates metric requirements of different SIGs for other components through finding common APIs.
 
+The [charter](charter.md) defines the scope and governance of the Instrumentation Special Interest Group.
+
 ## Meetings
-* Regular SIG Meeting: [Thursdays at 17:30 UTC](https://docs.google.com/document/d/1FQx0BPlkkl1Bn0c9ocVBxYIKojpmrS1CFP5h0DI68AE/edit) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=17:30&tz=UTC).
-  * [Meeting notes and Agenda](https://docs.google.com/document/d/17emKiwJeqfrCsv0NZ2FtyDbenXGtTNCsDEiLbPa7x7Y/edit).
+* Regular SIG Meeting: [Thursdays at 9:30 PT (Pacific Time)](https://zoom.us/j/5342565819) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=9:30&tz=PT%20%28Pacific%20Time%29).
+  * [Meeting notes and Agenda](https://docs.google.com/document/d/1FE4AQ8B49fYbKhfg4Tx0cui1V0eI4o3PxoqQPUwNEiU/edit?usp=sharing).
 
 ## Leadership
 
 ### Chairs
 The Chairs of the SIG run operations and processes governing the SIG.
 
-* Piotr Szczesniak (**[@piosz](https://github.com/piosz)**), Google
+* Elana Hashman (**[@ehashman](https://github.com/ehashman)**), Red Hat
+* Han Kang (**[@logicalhan](https://github.com/logicalhan)**), Google
+
+### Technical Leads
+The Technical Leads of the SIG establish new subprojects, decommission existing
+subprojects, and resolve cross-subproject technical issues and decisions.
+
 * Frederic Branczyk (**[@brancz](https://github.com/brancz)**), Red Hat
+* David Ashpole (**[@dashpole](https://github.com/dashpole)**), Google
+
+## Emeritus Leads
+
+* Piotr Szczesniak (**[@piosz](https://github.com/piosz)**)
 
 ## Contact
-* [Slack](https://kubernetes.slack.com/messages/sig-instrumentation)
-* [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-instrumentation)
-* [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Finstrumentation)
+- Slack: [#sig-instrumentation](https://kubernetes.slack.com/messages/sig-instrumentation)
+- [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-instrumentation)
+- [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Finstrumentation)
+- GitHub Teams:
+    - [@kubernetes/sig-instrumentation-api-reviews](https://github.com/orgs/kubernetes/teams/sig-instrumentation-api-reviews) - API Changes and Reviews
+    - [@kubernetes/sig-instrumentation-bugs](https://github.com/orgs/kubernetes/teams/sig-instrumentation-bugs) - Bug Triage and Troubleshooting
+    - [@kubernetes/sig-instrumentation-feature-requests](https://github.com/orgs/kubernetes/teams/sig-instrumentation-feature-requests) - Feature Requests
+    - [@kubernetes/sig-instrumentation-misc](https://github.com/orgs/kubernetes/teams/sig-instrumentation-misc) - General Discussion
+    - [@kubernetes/sig-instrumentation-pr-reviews](https://github.com/orgs/kubernetes/teams/sig-instrumentation-pr-reviews) - PR Reviews
+    - [@kubernetes/sig-instrumentation-proposals](https://github.com/orgs/kubernetes/teams/sig-instrumentation-proposals) - Design Proposals
+    - [@kubernetes/sig-instrumentation-test-failures](https://github.com/orgs/kubernetes/teams/sig-instrumentation-test-failures) - Test Failures and Triage
 
 ## Subprojects
 
-The following subprojects are owned by sig-instrumentation:
-- **custom-metrics-apiserver**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes-incubator/custom-metrics-apiserver/master/OWNERS
-- **heapster**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/heapster/master/OWNERS
-- **kube-state-metrics**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/kube-state-metrics/master/OWNERS
-- **metrics-server**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes-incubator/metrics-server/master/OWNERS
-- **metrics**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes/metrics/master/OWNERS
-    - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/src/k8s.io/metrics/OWNERS
-- **mutating-trace-admission-controller**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes-sigs/mutating-trace-admission-controller/master/OWNERS
+The following [subprojects][subproject-definition] are owned by sig-instrumentation:
+### custom-metrics-apiserver
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/custom-metrics-apiserver/master/OWNERS
+### heapster
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/heapster/master/OWNERS
+### instrumentation-tools
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/instrumentation-tools/master/OWNERS
+### klog
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/klog/master/OWNERS
+- **Contact:**
+  - Slack: [#klog](https://kubernetes.slack.com/messages/klog)
+### kube-state-metrics
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/kube-state-metrics/master/OWNERS
+- **Contact:**
+  - Slack: [#kube-state-metrics](https://kubernetes.slack.com/messages/kube-state-metrics)
+### metrics
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes/kubernetes/master/staging/src/k8s.io/metrics/OWNERS
+  - https://raw.githubusercontent.com/kubernetes/metrics/master/OWNERS
+### metrics-server
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/metrics-server/master/OWNERS
+### mutating-trace-admission-controller
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/mutating-trace-admission-controller/master/OWNERS
 
-## GitHub Teams
-
-The below teams can be mentioned on issues and PRs in order to get attention from the right people.
-Note that the links to display team membership will only work if you are a member of the org.
-
-| Team Name | Details | Description |
-| --------- |:-------:| ----------- |
-| @kubernetes/sig-instrumentation-api-reviews | [link](https://github.com/orgs/kubernetes/teams/sig-instrumentation-api-reviews) | API Changes and Reviews |
-| @kubernetes/sig-instrumentation-bugs | [link](https://github.com/orgs/kubernetes/teams/sig-instrumentation-bugs) | Bug Triage and Troubleshooting |
-| @kubernetes/sig-instrumentation-feature-requests | [link](https://github.com/orgs/kubernetes/teams/sig-instrumentation-feature-requests) | Feature Requests |
-| @kubernetes/sig-instrumentation-misc | [link](https://github.com/orgs/kubernetes/teams/sig-instrumentation-misc) | General Discussion |
-| @kubernetes/sig-instrumentation-pr-reviews | [link](https://github.com/orgs/kubernetes/teams/sig-instrumentation-pr-reviews) | PR Reviews |
-| @kubernetes/sig-instrumentation-proposals | [link](https://github.com/orgs/kubernetes/teams/sig-instrumentation-proposals) | Design Proposals |
-| @kubernetes/sig-instrumentation-test-failures | [link](https://github.com/orgs/kubernetes/teams/sig-instrumentation-test-failures) | Test Failures and Triage |
-
+[subproject-definition]: https://github.com/kubernetes/community/blob/master/governance.md#subprojects
 <!-- BEGIN CUSTOM CONTENT -->
 
 <!-- END CUSTOM CONTENT -->

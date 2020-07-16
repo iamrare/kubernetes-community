@@ -1,11 +1,8 @@
-reviewers:
-  - cblecker
-  - grodrigues3
-  - jamiehannaford
-  - spiffxp
+# See the OWNERS docs at https://go.k8s.io/owners
+
 approvers:
   - cblecker
-  - grodrigues3
+  - nikhita
   - spiffxp
 labels:
   - sig/contributor-experience

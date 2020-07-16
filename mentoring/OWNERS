@@ -1,8 +1,12 @@
+# See the OWNERS docs at https://go.k8s.io/owners
+
 reviewers:
   - parispittman
   - nikhita
+  - markyjackson-taulia
 approvers:
   - parispittman
+  - nikhita
   - sig-contributor-experience-leads
 labels:
   - sig/contributor-experience

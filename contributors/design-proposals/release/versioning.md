@@ -70,7 +70,7 @@ especially for production-critical components.
 
 We expect users to be running approximately the latest patch release of a given
 minor release; we often include critical bug fixes in
-[patch releases](#patch-release), and so encourage users to upgrade as soon as
+[patch releases](#patch-releases), and so encourage users to upgrade as soon as
 possible.
 
 Different components are expected to be compatible across different amounts of
@@ -89,9 +89,6 @@ reasonable response to the question "my v1.0 cluster isn't working," is, "you
 should probably upgrade it, (and probably should have some time ago)". With
 minor releases happening approximately every three months, that means a minor
 release is supported for approximately nine months.
-
-This policy is in line with
-[GKE's supported upgrades policy](https://cloud.google.com/container-engine/docs/clusters/upgrade).
 
 ## Patch releases
 
@@ -114,7 +111,7 @@ version changes, not new major nor minor versions).
 rolling upgrade across their cluster. (Rolling upgrade means being able to
 upgrade the master first, then one node at a time. See [#4855](https://issues.k8s.io/4855) for details.)
   * However, we do not recommend upgrading more than two minor releases at a
-time (see [Supported releases](#supported-releases)), and do not recommend
+time (see [Supported releases and component skew](#Supported-releases-and-component-skew)), and do not recommend
 running non-latest patch releases of a given minor release.
 * No hard breaking changes over version boundaries.
   * For example, if a user is at Kube 1.x, we may require them to upgrade to

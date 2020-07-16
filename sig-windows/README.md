@@ -8,10 +8,12 @@ To understand how this file is generated, see https://git.k8s.io/community/gener
 --->
 # Windows Special Interest Group
 
-Focuses on supporting Windows Server Containers for Kubernetes.
+Focuses on supporting Windows Node and scheduling Windows Server containers on Kubernetes.
+
+The [charter](charter.md) defines the scope and governance of the Windows Special Interest Group.
 
 ## Meetings
-* Regular SIG Meeting: [Tuesdays at 12:30 Eastern Standard Time (EST)](https://docs.google.com/document/d/1FQx0BPlkkl1Bn0c9ocVBxYIKojpmrS1CFP5h0DI68AE/edit) (weekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=12:30&tz=Eastern%20Standard%20Time%20%28EST%29).
+* Regular SIG Meeting: [Tuesdays at 12:30 Eastern Standard Time (EST)](https://zoom.us/j/297282383) (weekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=12:30&tz=Eastern%20Standard%20Time%20%28EST%29).
   * [Meeting notes and Agenda](https://docs.google.com/document/d/1Tjxzjjuy4SQsFSUVXZbvqVb64hjNAG5CQX8bK7Yda9w/edit#heading=h.kbz22d1yc431).
   * [Meeting recordings](https://www.youtube.com/playlist?list=PL69nYSiGNLP2OH9InCcNkWNu2bl-gmIU4).
 
@@ -20,52 +22,65 @@ Focuses on supporting Windows Server Containers for Kubernetes.
 ### Chairs
 The Chairs of the SIG run operations and processes governing the SIG.
 
+* Mark Rossetti (**[@marosset](https://github.com/marosset)**), Microsoft
 * Michael Michael (**[@michmike](https://github.com/michmike)**), VMware
-* Patrick Lang (**[@patricklang](https://github.com/patricklang)**), Microsoft
+
+### Technical Leads
+The Technical Leads of the SIG establish new subprojects, decommission existing
+subprojects, and resolve cross-subproject technical issues and decisions.
+
+* Ben Moss (**[@benmoss](https://github.com/benmoss)**), Pivotal
+* Deep Debroy (**[@ddebroy](https://github.com/ddebroy)**), Docker
+
+## Emeritus Leads
+
+* Patrick Lang (**[@PatrickLang](https://github.com/PatrickLang)**)
 
 ## Contact
-* [Slack](https://kubernetes.slack.com/messages/sig-windows)
-* [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-windows)
-* [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Fwindows)
+- Slack: [#sig-windows](https://kubernetes.slack.com/messages/sig-windows)
+- [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-windows)
+- [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/sig%2Fwindows)
+- GitHub Teams:
+    - [@kubernetes/sig-windows-bugs](https://github.com/orgs/kubernetes/teams/sig-windows-bugs) - Bug Triage and Troubleshooting
+    - [@kubernetes/sig-windows-feature-requests](https://github.com/orgs/kubernetes/teams/sig-windows-feature-requests) - Feature Requests
+    - [@kubernetes/sig-windows-misc](https://github.com/orgs/kubernetes/teams/sig-windows-misc) - General Discussion
 
 ## Subprojects
 
-The following subprojects are owned by sig-windows:
-- **windows-testing**
-  - Owners:
-    - https://raw.githubusercontent.com/kubernetes-sigs/windows-testing/master/OWNERS
+The following [subprojects][subproject-definition] are owned by sig-windows:
+### windows-gmsa
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/windows-gmsa/master/OWNERS
+### windows-samples
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/sig-windows-samples/master/OWNERS
+### windows-testing
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/windows-testing/master/OWNERS
+### windows-tools
+- **Owners:**
+  - https://raw.githubusercontent.com/kubernetes-sigs/sig-windows-tools/master/OWNERS
 
-## GitHub Teams
-
-The below teams can be mentioned on issues and PRs in order to get attention from the right people.
-Note that the links to display team membership will only work if you are a member of the org.
-
-| Team Name | Details | Description |
-| --------- |:-------:| ----------- |
-| @kubernetes/sig-windows-bugs | [link](https://github.com/orgs/kubernetes/teams/sig-windows-bugs) | Bug Triage and Troubleshooting |
-| @kubernetes/sig-windows-feature-requests | [link](https://github.com/orgs/kubernetes/teams/sig-windows-feature-requests) | Feature Requests |
-| @kubernetes/sig-windows-misc | [link](https://github.com/orgs/kubernetes/teams/sig-windows-misc) | General Discussion |
-
+[subproject-definition]: https://github.com/kubernetes/community/blob/master/governance.md#subprojects
 <!-- BEGIN CUSTOM CONTENT -->
 ## Getting Started
 
-If you're looking for information on building and running containers on Windows, you can get started at http://aka.ms/windowscontainers .
+If you're looking for information on building and running containers on Windows, you can get started at http://aka.ms/windowscontainers.
 
-Kubernetes 1.9 includes beta support for Windows Server containers and has an up-to-date [Getting Started Guide for Windows](https://kubernetes.io/docs/getting-started-guides/windows/) .
+Kubernetes 1.14 includes stable support for Windows Server containers and has up-to-date [documentation](https://kubernetes.io/docs/setup/windows/intro-windows-in-kubernetes/) .
 
-Some additional guides are available, but may refer to older releases:
+Additional information and guides are available in the [KEPs for SIG-Windows](https://github.com/kubernetes/enhancements/tree/master/keps/sig-windows)
 
-* Using host gateway networking: https://docs.microsoft.com/en-us/virtualization/windowscontainers/kubernetes/getting-started-kubernetes-windows 
-* Using OVN as demonstrated at Google Cloud Next '17: https://github.com/apprenda/kubernetes-ovn-heterogeneous-cluster
+## Discuss
+Join us on [Slack](https://kubernetes.slack.com/messages/sig-windows) or the [Kubernetes Community Forums](https://discuss.kubernetes.io/c/general-discussions/windows) to chat about Windows containers on Kubernetes.
 
 ## Contributing
 
-We're currently using a public [Trello board](https://trello.com/b/rjTqrwjl/windows-k8s-roadmap) in the weekly SIG-Windows meeting to track items with active progress for each release. That's a great place to start to get the most up-to-date status, then feel free to join us on the Slack channel anytime with questions.
+To get yourself familiar with contributing, please read the [Kubernetes Contributor Guide](../contributors/guide/README.md) and the [SIG-Windows Contributor guide](./CONTRIBUTING.md)
+
+We're currently using a [GitHub project](https://github.com/orgs/kubernetes/projects/8) in the weekly SIG-Windows meeting to track items with active progress for each release. That's a great place to start to get the most up-to-date status, then feel free to join us on the Slack channel anytime with questions.
 
 As always, you can also find the active list of open issues and proposals [Open Code Issues and PRs for SIG/Windows](https://github.com/kubernetes/kubernetes/labels/sig%2Fwindows) on GitHub.
-
-## API tracking
-We also have an [API tracking](https://github.com/kubernetes/community/blob/master/sig-windows/api-tracking.md) document that we're building out to track areas where the APIs may not be implemented or need to change for Windows.
 
 ## Meeting Recordings
 

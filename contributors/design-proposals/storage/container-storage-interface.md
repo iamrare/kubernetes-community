@@ -29,7 +29,7 @@ Kubernetes volume plugins are currently “in-tree” meaning they are linked, c
 4. Volume plugins get full privileges of kubernetes components (kubelet and kube-controller-manager).
 5. Plugin developers are forced to make plugin source code available, and can not choose to release just a binary.
 
-The existing [Flex Volume](/contributors/devel/flexvolume.md) plugin attempted to address this by exposing an exec based API for mount/unmount/attach/detach. Although it enables third party storage vendors to write drivers out-of-tree, it requires access to the root filesystem of node and master machines in order to deploy the third party driver files.
+The existing [Flex Volume] plugin attempted to address this by exposing an exec based API for mount/unmount/attach/detach. Although it enables third party storage vendors to write drivers out-of-tree, it requires access to the root filesystem of node and master machines in order to deploy the third party driver files.
 
 Additionally, it doesn’t address another pain of in-tree volumes plugins: dependencies. Volume plugins tend to have many external requirements: dependencies on mount and filesystem tools, for example. These dependencies are assumed to be available on the underlying host OS, which often is not the case, and installing them requires direct machine access. There are efforts underway, for example https://github.com/kubernetes/community/pull/589, that are hoping to address this for in-tree volume plugins. But, enabling volume plugins to be completely containerized will make dependency management much easier.
 
@@ -56,7 +56,7 @@ The objective of this document is to document all the requirements for enabling 
 * Recommend deployment process for Kubernetes compatible, third-party CSI Volume drivers on a Kubernetes cluster.
 
 ## Non-Goals
-* Replace [Flex Volume plugin](/contributors/devel/flexvolume.md)
+* Replace [Flex Volume plugin]
   * The Flex volume plugin exists as an exec based mechanism to create “out-of-tree” volume plugins.
   * Because Flex drivers exist and depend on the Flex interface, it will continue to be supported with a stable API.
   * The CSI Volume plugin will co-exist with Flex volume plugin.
@@ -87,7 +87,7 @@ Kubelet (responsible for mount and unmount) will communicate with an external �
 
 CSI volume drivers should create a socket at the following path on the node machine: `/var/lib/kubelet/plugins/[SanitizedCSIDriverName]/csi.sock`. For alpha, kubelet will assume this is the location for the Unix Domain Socket to talk to the CSI volume driver. For the beta implementation, we can consider using the [Device Plugin Unix Domain Socket Registration](/contributors/design-proposals/resource-management/device-plugin.md#unix-socket) mechanism to register the Unix Domain Socket with kubelet. This mechanism would need to be extended to support registration of both CSI volume drivers and device plugins independently.
 
-`Sanitized CSIDriverName` is CSI driver name that does not contain dangerous character and can be used as annotation name. It can follow the same pattern that we use for [volume plugins](https://git.k8s.io/kubernetes/pkg/util/strings/escape.go#L27). Too long or too ugly driver names can be rejected, i.e. all components described in this document will report an error and won't talk to this CSI driver. Exact sanitization method is implementation detail (SHA in the worst case).
+`Sanitized CSIDriverName` is CSI driver name that does not contain dangerous character and can be used as annotation name. It can follow the same pattern that we use for [volume plugins](https://git.k8s.io/utils/strings/escape.go#L28). Too long or too ugly driver names can be rejected, i.e. all components described in this document will report an error and won't talk to this CSI driver. Exact sanitization method is implementation detail (SHA in the worst case).
 
 Upon initialization of the external “CSI volume driver”, kubelet must call the CSI method `NodeGetInfo` to get the mapping from Kubernetes Node names to CSI driver NodeID and the associated `accessible_topology`. It must:
 
@@ -243,7 +243,7 @@ type VolumeAttachment struct {
 	metav1.TypeMeta `json:",inline"`
 
 	// Standard object metadata.
-	// More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata
+	// More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 	// +optional
 	metav1.ObjectMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 
@@ -410,35 +410,39 @@ When the controller decides to detach a CSI volume, it will call the in-tree CSI
 
 ### Recommended Mechanism for Deploying CSI Drivers on Kubernetes
 
-Although, Kubernetes does not dictate the packaging for a CSI volume driver, it offers the following recommendations to simplify deployment of a containerized CSI volume driver on Kubernetes.
+Although Kubernetes does not dictate the packaging for a CSI volume driver, it offers the following recommendations to simplify deployment of a containerized CSI volume driver on Kubernetes.
 
 ![Recommended CSI Deployment Diagram](container-storage-interface_diagram1.png?raw=true "Recommended CSI Deployment Diagram")
 
 To deploy a containerized third-party CSI volume driver, it is recommended that storage vendors:
 
   * Create a “CSI volume driver” container that implements the volume plugin behavior and exposes a gRPC interface via a unix domain socket, as defined in the CSI spec (including Controller, Node, and Identity services).
-  * Bundle the “CSI volume driver” container with helper containers (external-attacher, external-provisioner, Kubernetes CSI Helper) that the Kubernetes team will provide (these helper containers will assist the “CSI volume driver” container in interacting with the Kubernetes system). More specifically, create the following Kubernetes objects:
-    * A `StatefulSet` (to facilitate communication with the Kubernetes controllers) that has:
-      * Replica size 1
-        * Guarantees that no more than 1 instance of the pod will be running at once (so we don’t have to worry about multiple instances of the `external-provisioner` or `external-attacher` in the cluster).
+  * Bundle the “CSI volume driver” container with helper containers (external-attacher, external-provisioner, node-driver-registrar, cluster-driver-registrar, external-resizer, external-snapshotter, livenessprobe) that the Kubernetes team will provide (these helper containers will assist the “CSI volume driver” container in interacting with the Kubernetes system). More specifically, create the following Kubernetes objects:
+    * To facilitate communication with the Kubernetes controllers, a `StatefulSet` or a `Deployment` (depending on the user's need; see [Cluster-Level Deployment](#cluster-level-deployment)) that has:
       * The following containers
         * The “CSI volume driver” container created by the storage vendor.
-        * The `external-attacher` container provided by the Kubernetes team.
-        * The `external-provisioner` container provided by the Kubernetes team.
+        * Containers provided by the Kubernetes team (all of which are optional):
+          * `cluster-driver-registrar` (refer to the README in `cluster-driver-registrar` repository for when the container is required)
+          * `external-provisioner` (required for provision/delete operations)
+          * `external-attacher` (required for attach/detach operations. If you wish to skip the attach step, CSISkipAttach feature must be enabled in Kubernetes in addition to omitting this container)
+          * `external-resizer` (required for resize operations)
+          * `external-snapshotter` (required for volume-level snapshot operations)
+          * `livenessprobe`
       * The following volumes:
         * `emptyDir` volume
-          * Mounted inside all containers at `/var/lib/csi/sockets/pluginproxy/`
-          * The “CSI volume driver” container should create its Unix Domain Socket in this directory to enable communication with the Kubernetes helper container(s) (`external-provisioner`, `external-attacher`).
+          * Mounted by all containers, including the “CSI volume driver”.
+          * The “CSI volume driver” container should create its Unix Domain Socket in this directory to enable communication with the Kubernetes helper container(s).
     * A `DaemonSet` (to facilitate communication with every instance of kubelet) that has:
       * The following containers
         * The “CSI volume driver” container created by the storage vendor.
-        * The “Kubernetes CSI Helper” container provided by the Kubernetes team
-          * Responsible for registering the unix domain socket with kubelet and initializing NodeId.
+        * Containers provided by the Kubernetes team:
+          * `node-driver-registrar` - Responsible for registering the unix domain socket with kubelet.
+          * `livenessprobe` (optional)
       * The following volumes:
         * `hostpath` volume
-          * Expose `/var/lib/kubelet/device-plugins/kubelet.sock` from the host.
-          * Mount only in “Kubernetes CSI Helper” container at `/var/lib/csi/sockets/kubelet.sock`
-          * The Kubernetes to CSI proxy container will use this unix domain socket to register the CSI driver’s unix domain socket with kubelet.
+          * Expose `/var/lib/kubelet/plugins_registry` from the host.
+          * Mount only in `node-driver-registrar` container at `/registration`
+          * `node-driver-registrar` will use this unix domain socket to register the CSI driver’s unix domain socket with kubelet.
         * `hostpath` volume
           * Expose `/var/lib/kubelet/` from the host.
           * Mount only in “CSI volume driver” container at `/var/lib/kubelet/`
@@ -450,6 +454,17 @@ To deploy a containerized third-party CSI volume driver, it is recommended that 
   * Have cluster admins deploy the above `StatefulSet` and `DaemonSet` to add support for the storage system in their Kubernetes cluster.
 
 Alternatively, deployment could be simplified by having all components (including external-provisioner and external-attacher) in the same pod (DaemonSet). Doing so, however, would consume more resources, and require a leader election protocol (likely https://git.k8s.io/contrib/election) in the `external-provisioner` and `external-attacher` components.
+
+Containers provided by Kubernetes are maintained in [GitHub kubernetes-csi organization](https://github.com/kubernetes-csi).
+
+#### Cluster-Level Deployment
+Containers in the cluster-level deployment may be deployed in one of the following configurations:
+
+1. StatefulSet with single replica. Good for clusters with a single dedicated node to run the cluster-level pod. A StatefulSet guarantees that no more than 1 instance of the pod will be running at once. One downside is that if the node becomes unresponsive, the replica will never be deleted and recreated.
+1. Deployment with multiple replicas and leader election enabled (if supported by the container). Good for admins who prefer faster recovery time in case the main replica fails, at a cost of higher resource usage (especially memory).
+1. Deployment with a single replica and leader election enabled (if supported by the container). A compromise between the above two options. If the replica is detected to be failed, a new replica can be scheduled almost immediately.
+
+Note that certain cluster-level containers, such as `external-provisioner`, `external-attacher`, `external-resizer`, and `external-snapshotter`, may require credentials to the storage backend, and as such, admins may choose to run them on dedicated "infrastructure" nodes (such as master nodes) that don't run user pods.
 
 #### Topology Representation in Node Objects
 Topology information will be represented as labels.
@@ -777,3 +792,7 @@ Instead of creating a new `VolumeAttachment` object, another option we considere
 * List of nodes the volume was successfully attached to.
 
 We dismissed this approach because having attach/detach triggered by the creation/deletion of an object is much easier to manage (for both external-attacher and Kubernetes) and more robust (fewer corner cases to worry about).
+
+
+[Flex Volume]: /contributors/devel/sig-storage/flexvolume.md
+[Flex Volume plugin]: /contributors/devel/sig-storage/flexvolume.md

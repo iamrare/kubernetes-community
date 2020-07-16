@@ -6,30 +6,35 @@ The Kubernetes community adheres to the following principles:
 * Open: Kubernetes is open source. See repository guidelines and CLA, below.
 * Welcoming and respectful: See Code of Conduct, below.
 * Transparent and accessible: Work and collaboration should be done in public. See SIG governance, below.
-* Merit: Ideas and contributions are accepted according to their technical merit and alignment with project objectives, [scope](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/), and [design principles](contributors/design-proposals/architecture/principles.md).
+* Merit: Ideas and contributions are accepted according to their technical merit and alignment with project objectives, [scope], and [design principles].
 
 # Code of Conduct
 
-The Kubernetes community abides by the CNCF [code of conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md). Here is an excerpt:
+The Kubernetes community abides by the [Kubernetes code of conduct]. Here is an excerpt:
 
 _As contributors and maintainers of this project, and in the interest of fostering an open and welcoming community, we pledge to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities._
 
 As a member of the Kubernetes project, you represent the project and your fellow contributors.
 We value our community tremendously and we'd like to keep cultivating a friendly and collaborative
 environment for our contributors and users. We want everyone in the community to have
-[positive experiences](https://www.cncf.io/blog/2016/12/14/diversity-scholarship-series-one-software-engineers-unexpected-cloudnativecon-kubecon-experience).
+[positive experiences].
+
+# Values
+
+[We have them!]
 
 # Community membership
 
-See [community membership]
+See [community membership][community members]
 
 # Community groups
 
-The project has 4 main types of groups:
+The project is comprised of the following types of subgroups:
 * Special Interest Groups, SIGs
   * Subprojects
 * Working Groups, WGs
 * Committees
+* User Groups
 
 ![Kubernetes Governance Diagram](kubernetes_governance_diagram.png)
 
@@ -50,7 +55,7 @@ Areas covered by SIGs may be vertically focused on particular
 components or functions, cross-cutting/horizontal, spanning many/all
 functional areas of the project, or in support of the project
 itself. Examples:
-* Vertical: Network, Storage, Node, Scheduling, Big Data
+* Vertical: Network, Storage, Node, Scheduling
 * Horizontal: Scalability, Architecture
 * Project: Testing, Release, Docs, PM, Contributor Experience
 
@@ -65,12 +70,9 @@ subsystems, code repos and directories), responsibilities, areas of
 authority, how members and roles of authority/leadership are
 selected/granted, how decisions are made, and how conflicts are
 resolved. See the [SIG charter process] for details on how charters are managed.
-A [short template] for intra-SIG governance has been
-developed in order to simplify SIG creation, and additional templates
-are being developed, but SIGs should be relatively free to customize
-or change how they operate, within some broad guidelines and
-constraints imposed by cross-SIG processes (e.g., the release process)
-and assets (e.g., the kubernetes repo).
+SIGs should be relatively free to customize or change how they operate,
+within some broad guidelines and constraints imposed by cross-SIG processes
+(e.g., the release process) and assets (e.g., the kubernetes repo).
 
 A primary reason that SIGs exist is as forums for collaboration.
 Much work in a SIG should stay local within that SIG. However, SIGs
@@ -81,6 +83,10 @@ community.
 
 See [sig governance] for more details about current SIG operating
 mechanics, such as mailing lists, meeting times, etc.
+
+More information:  
+[SIG Governance Requirements]  
+[SIG Lifecycle] - for a tactical checklist on creation and retirement  
 
 ### Subprojects
 
@@ -96,10 +102,9 @@ field technical escalations, etc.
 Example subprojects for a few SIGs:
 * SIG Network: pod networking (CNI, etc.), Service (incl. kube-proxy),
 Ingress, DNS, and Network policy
-* SIG Apps: workload APIs, Helm, Kompose, ...
 * SIG Cluster Lifecycle: kubeadm, kops, kubespray, minikube, ...
 
-Subprojects for each SIG are documented in [sigs.yaml](sigs.yaml).
+Subprojects for each SIG are documented in [sigs.yaml].
 
 ## Working Groups
 
@@ -114,20 +119,57 @@ forming a Working Group.
 See [working group governance] for more details about forming and disbanding
 Working Groups.
 
-Working groups are documented in [sigs.yaml](sigs.yaml).
+Working groups are documented in [sigs.yaml].
 
 
 ## Committees
 
-Some topics, such as Security or Code of Conduct, require
-discretion. Whereas SIGs are voluntary groups which operate in the
-open and anyone can join, Committees do not have open membership and do
-not always operate in the open.  The steering committee can form
-committees as needed, for bounded or unbounded duration.  Membership
-of a committee is decided by the steering committee.  Like a SIG, a
-committee has a charter and a chair, and will report to the steering
-committee periodically, and to the community as makes sense, given the
-charter.
+Some topics, such as Security or Code of Conduct, require discretion. Whereas
+SIGs are voluntary groups which operate in the open and anyone can join,
+Committees do not have open membership and do not always operate in the open.
+The steering committee can form committees as needed, for bounded or unbounded
+duration.  Membership of a committee is decided by the steering committee,
+however, all committee members must be [community members].  Like a SIG, a
+committee has a charter and a chair, and will report to the steering committee
+periodically, and to the community as makes sense, given the charter.
+
+## User groups
+Some topics have long term relevance to large groups of Kubernetes users, but
+do not have clear deliverables or ownership of parts of the Kubernetes
+code base. As such they are neither good fits for SIGs or Working Groups.
+An example of such a topic might be continuous delivery to Kubernetes.
+
+Though their central goal is not a deliverable piece of work, as contributing
+members of the community user groups are expected to work with SIGs
+to either identify friction or usability issues that need to be addressed,
+or to provide or improve documentation in their area of expertise. However
+these activities are covered under general code contributions to the relevant
+SIGs (e.g. SIG Docs) rather than as part of the user group. These contributions
+are expected to be more incremental and ad-hoc versus the more targeted
+output of a user group.
+
+User groups function as a centralized resource to facilitate communication and
+discovery of information related to the topic of the user group. User groups
+should not undertake to produce any deliverable, instead they should form
+working groups under the auspices of some SIG for such work. Likewise they
+shouldn't take ownership of anything in the Kubernetes process, as that is a
+role for SIGs. All user group chairs, and others that hold leadership positions
+within a user group must be [community members].
+
+See [user group governance] for more details about forming and disbanding
+User Groups.
+
+To facilitate discoverability and engagement,
+user groups are documented in [sigs.yaml]
+
+## Community Group Annual Reports   
+As you can see in the descriptions above, the project is robust with diverse
+groups of contributors and their varying degrees of expected communications.     
+
+The annual community group health check will establish an opportunity for deeper
+ dialogue and broader communication across the chairs of each group and the
+ Steering Committee. By including this reporting with the existing community
+ meeting structure, we can focus on the goals outlined in the [Annual Report] doc.  
 
 ## Cross-project Communication and Coordination
 
@@ -166,12 +208,21 @@ Note that "Kubernetes incubator" process has been deprecated in favor of the new
 
 All contributors must sign the CNCF CLA, as described [here](CLA.md).
 
-[community membership]: /community-membership.md
-[sig governance]: /sig-governance.md
-[owners]: community-membership.md#subproject-owner
-[sig charter process]: committee-steering/governance/README.md
-[short template]: committee-steering/governance/sig-governance-template-short.md
-[kubernetes repository guidelines]: kubernetes-repositories.md
-[working group governance]: committee-steering/governance/wg-governance.md
-
+[positive experiences]: https://www.cncf.io/blog/2016/12/14/diversity-scholarship-series-one-software-engineers-unexpected-cloudnativecon-kubecon-experience
+[sigs.yaml]: /sigs.yaml
+[SIG Lifecycle]: /sig-wg-lifecycle.md
+[We have them!]: /values.md
+[Kubernetes code of conduct]: /code-of-conduct.md
+[design principles]: /contributors/design-proposals/architecture/principles.md
+[scope]: https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
+[community members]: /community-membership.md
+[sig governance]: /committee-steering/governance/sig-governance.md
+[owners]: /community-membership.md#subproject-owner
+[sig charter process]: /committee-steering/governance/README.md
+[kubernetes repository guidelines]: /github-management/kubernetes-repositories.md
+[working group governance]: /committee-steering/governance/wg-governance.md
+[user group governance]: /committee-steering/governance/ug-governance.md
+[SIG Governance Requirements]: /committee-steering/governance/sig-governance-requirements.md
+[Annual Report]: /committee-steering/governance/annual-reports.md
+[monthly community meeting]: /events/community-meeting.md
 [![Analytics](https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/governance.md?pixel)]()

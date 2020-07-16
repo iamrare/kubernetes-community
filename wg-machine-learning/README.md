@@ -10,21 +10,24 @@ To understand how this file is generated, see https://git.k8s.io/community/gener
 
 Identify and fix gaps in Kubernetes to better support Machine Learning applications
 
+## Stakeholder SIGs
+* SIG Apps
+* SIG Node
+
 ## Meetings
-* Regular WG Meeting: [Thursdays at 13:00 PT (Pacific Time)](https://docs.google.com/document/d/1FQx0BPlkkl1Bn0c9ocVBxYIKojpmrS1CFP5h0DI68AE/edit) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=13:00&tz=PT%20%28Pacific%20Time%29).
+* Regular WG Meeting: [Thursdays at 13:00 PT (Pacific Time)](https://zoom.com.cn/j/103404077) (biweekly). [Convert to your timezone](http://www.thetimezoneconverter.com/?t=13:00&tz=PT%20%28Pacific%20Time%29).
   * [Meeting notes and Agenda](https://goo.gl/gBCdt1).
 
 ## Organizers
 
-* Vishnu Kannan (**[@vishh](https://github.com/vishh)**), Google
+* Klaus Ma (**[@k82cn](https://github.com/k82cn)**), Huawei
 * Kenneth Owens (**[@kow3ns](https://github.com/kow3ns)**), Google
-* Balaji Subramaniam (**[@balajismaniam](https://github.com/balajismaniam)**), Intel
-* Connor Doyle (**[@ConnorDoyle](https://github.com/ConnorDoyle)**), Intel
+* Vishnu Kannan (**[@vishh](https://github.com/vishh)**), Google
 
 ## Contact
-* [Slack](https://kubernetes.slack.com/messages/wg-machine-learning)
-* [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-wg-machine-learning)
-
+- Slack: [#wg-machine-learning](https://kubernetes.slack.com/messages/wg-machine-learning)
+- [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-wg-machine-learning)
+- [Open Community Issues/PRs](https://github.com/kubernetes/community/labels/wg%2Fmachine-learning)
 <!-- BEGIN CUSTOM CONTENT -->
 A working group dedicated towards making Kubernetes work best for Machine Learning workloads.
 

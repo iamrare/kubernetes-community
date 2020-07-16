@@ -1,35 +1,46 @@
-# Pull Request Process
+---
+title: "Pull Request Process"
+weight: 5
+description: |
+  Explains the process and best practices for submitting a pull request
+  to the Kubernetes project and its associated sub-repositories. It should serve
+  as a reference for all contributors, and be useful especially to new or
+  infrequent submitters.
+---
 
-This doc explains the process and best practices for submitting a pull request to the [Kubernetes project](https://github.com/kubernetes/kubernetes) and its associated subrepositories. It should serve as a reference for all contributors, and be useful especially to new and infrequent submitters.
+This doc explains the process and best practices for submitting a pull request to the [Kubernetes project](https://github.com/kubernetes/kubernetes) and its associated sub-repositories. It should serve as a reference for all contributors, and be useful especially to new and infrequent submitters.
 
 - [Before You Submit a Pull Request](#before-you-submit-a-pull-request)
-  * [Run Local Verifications](#run-local-verifications)
+  - [Run Local Verifications](#run-local-verifications)
 - [The Pull Request Submit Process](#the-pull-request-submit-process)
-  * [The Testing and Merge Workflow](#the-testing-and-merge-workflow)
-  * [Marking Unfinished Pull Requests](#marking-unfinished-pull-requests)
-  * [Comment Commands Reference](#comment-commands-reference)
-  * [Automation](#automation)
-  * [How the e2e Tests Work](#how-the-e2e-tests-work)
-- [Why was my Pull Request closed?](#why-was-my-pull-request-closed)
-- [Why is my Pull Request not getting reviewed?](#why-is-my-pull-request-not-getting-reviewed)
+  - [The Testing and Merge Workflow](#the-testing-and-merge-workflow)
+  - [More About `Ok-To-Test`](#more-about-ok-to-test)
+  - [Marking Unfinished Pull Requests](#marking-unfinished-pull-requests)
+  - [Pull Requests and the Release Cycle](#pull-requests-and-the-release-cycle)
+  - [Comment Commands Reference](#comment-commands-reference)
+  - [Automation](#automation)
+  - [How the e2e Tests Work](#how-the-e2e-tests-work)
+- [Why was my pull request closed?](#why-was-my-pull-request-closed)
+- [Why is my pull request not getting reviewed?](#why-is-my-pull-request-not-getting-reviewed)
 - [Best Practices for Faster Reviews](#best-practices-for-faster-reviews)
-  * [0. Familiarize yourself with project conventions](#0-familiarize-yourself-with-project-conventions)
-  * [1. Is the feature wanted? File a Kubernetes Enhancement Proposal](#1-is-the-feature-wanted-file-a-kubernetes-enhancement-proposal)
-  * [2. Smaller Is Better: Small Commits, Small Pull Requests](#2-smaller-is-better-small-commits-small-pull-requests)
-  * [3. Open a Different Pull Request for Fixes and Generic Features](#3-open-a-different-pull-request-for-fixes-and-generic-features)
-  * [4. Comments Matter](#4-comments-matter)
-  * [5. Test](#5-test)
-  * [6. Squashing and Commit Titles](#6-squashing-and-commit-titles)
-  * [7. KISS, YAGNI, MVP, etc.](#7-kiss-yagni-mvp-etc)
-  * [8. It's OK to Push Back](#8-its-ok-to-push-back)
-  * [9. Common Sense and Courtesy](#9-common-sense-and-courtesy)
-  * [10. Trivial Edits](#10-trivial-edits)
+  - [0. Familiarize yourself with project conventions](#0-familiarize-yourself-with-project-conventions)
+  - [1. Is the feature wanted? File a Kubernetes Enhancement Proposal](#1-is-the-feature-wanted-file-a-kubernetes-enhancement-proposal)
+  - [2. Smaller Is Better: Small Commits, Small Pull Requests](#2-smaller-is-better-small-commits-small-pull-requests)
+  - [3. Open a Different Pull Request for Fixes and Generic Features](#3-open-a-different-pull-request-for-fixes-and-generic-features)
+  - [4. Comments Matter](#4-comments-matter)
+  - [5. Test](#5-test)
+  - [6. Squashing](#6-squashing)
+  - [7. Commit Message Guidelines](#7-commit-message-guidelines)
+  - [8. KISS, YAGNI, MVP, etc.](#8-kiss-yagni-mvp-etc)
+  - [9. It's OK to Push Back](#9-its-ok-to-push-back)
+  - [10. Common Sense and Courtesy](#10-common-sense-and-courtesy)
+  - [11. Trivial Edits](#11-trivial-edits)
 
 # Before You Submit a Pull Request
 
 This guide is for contributors who already have a pull request to submit. If you're looking for information on setting up your developer environment and creating code to contribute to Kubernetes, see the [development guide](/contributors/devel/development.md).
 
-First time contributors should head to the [Contributor Guide](/contributors/guide/README.md) to get started.
+First-time contributors should head to the [Contributor Guide](/contributors/guide/README.md) to get started.
 
 **Make sure your pull request adheres to our best practices. These include following project conventions, making small pull requests, and commenting thoroughly. Please read the more detailed section on [Best Practices for Faster Reviews](#best-practices-for-faster-reviews) at the end of this doc.**
 
@@ -50,7 +61,7 @@ Merging a pull request requires the following steps to be completed before the p
 - [Open a pull request](https://help.github.com/articles/about-pull-requests/)
   - *For kubernetes/kubernetes repository only:* Add [release notes](/contributors/guide/release-notes.md) if needed.
 - Pass all e2e tests
-- Get all necessary approvals from reviewers and code owners 
+- Get all necessary approvals from reviewers and code owners
 
 ## The Testing and Merge Workflow
 
@@ -58,7 +69,7 @@ The Kubernetes merge workflow uses labels, applied by [commands](https://prow.k8
 
 _Example:_ To apply a SIG label, you would type in a comment:
 ```
-/sig aws
+/sig apps
 ```
 
 *NOTE: For pull requests that are in progress but not ready for review,
@@ -78,7 +89,7 @@ Here's the process the pull request goes through on its way from submission to m
 
 1. Reviewer suggests edits
 1. Push edits to your pull request branch
-1. Repeat the prior two steps as needed until reviewer(s) add `/lgtm` label. The `/lgtm` label, when applied by someone listed as an `reviewer` in the corresponding project `OWNERS` file, is a signal that the code has passed review from one or more trusted reviewers for that project
+1. Repeat the prior two steps as needed until the reviewer(s) add `/lgtm` label. The `/lgtm` label, when applied by someone listed as a `reviewer` in the corresponding project `OWNERS` file, is a signal that the code has passed review from one or more trusted reviewers for that project
 1. (Optional) Some reviewers prefer that you squash commits at this step
 1. Follow the bot suggestions to assign an OWNER who will add the `/approve` label to the pull request. The `/approve` label, when applied by someone listed as an `approver` in the corresponding project `OWNERS`, is a signal that the code has passed final review and is ready to be automatically merged
 
@@ -104,6 +115,25 @@ easily see all criteria that are not being met and address them.
 
 That's the last step. Your pull request is now merged.
 
+## More About `Ok-To-Test`
+
+- The ok-to-test label is applied by org members to PRs from external contributors, it signals that the PR can be tested.
+- For a Contributor, an `ok-to-test` label means the regular CI tests will be run for their PR.
+- For the reviewer or the member, labelling the PR with `ok-to-test` it means a lot more:
+    - They need to take care if the PR is not a wastage of our `CI/CD` resources.
+    - Is the PR worth testing or does it need more changes before going through the `CI/CD` process?
+    - Is the PR getting used to run malicious code to misuse our resources ?
+- An `ok-to-test` label may reduce the workload and smoothens the contributors experience as they can know if there is any failing test. If there is, you can fix the test and they don't have to wait for a long time to get a review from `maintainer/assignee`.
+- There are various other factors on which labelling of `ok-to-test` depends :
+    - Size of PR :
+        - If the PR is of `size/S` or `size/M` which is just to fix a grammatical error or spelling mistake, the reviewer can trigger the `CI/CD` without having a second thought.
+        - If the PR is of `size/XXL` which aims at adding a new feature, a new API endpoint or any new substantial feature. There needs to other conventions & process to be followed regarding the change made. Hence it may have a slight to delay to get labelled with `ok-to-test`.
+    - Other org members who are not assigned to the following PR may also label `ok-to-test` , if the change is small.
+    - If the PR is labelled with `cncf-cla: no`, then it is better to wait before labelling `ok-to-test`.
+    - PRs with tag `do-not-merge/hold` or `needs-rebase` should make the appropriate changes before the PR can be labelled `ok-to-test`.
+    - PRs created by mistake without to meaningful change of code should not be labelled `ok-to-test` and closed.
+
+
 ## Marking Unfinished Pull Requests
 
 If you want to solicit reviews before the implementation of your pull request is complete, you should hold your pull request to ensure that Tide does not pick it up and attempt to merge it. There are two methods to achieve this:
@@ -115,7 +145,7 @@ The GitHub robots will add and remove the `do-not-merge/hold` label as you use t
 
 ## Pull Requests and the Release Cycle
 
-If a pull request has been reviewed, but held or not approved, it might be due to the current phase in the [Release Cycle](/contributors/devel/release.md). Occasionally, a SIG may freeze their own code base when working towards a specific feature or goal that could impact other development. During this time, your pull request could remain unmerged while their release work is completed.
+If a pull request has been reviewed but held or not approved, it might be due to the current phase in the [Release Cycle](/contributors/devel/sig-release/release.md). Occasionally, a SIG may freeze their own code base when working towards a specific feature or goal that could impact other development. During this time, your pull request could remain unmerged while their release work is completed.
 
 If you feel your pull request is in this state, contact the appropriate [SIG](https://git.k8s.io/community/sig-list.md) or [SIG-Release](https://git.k8s.io/sig-release) for clarification.
 
@@ -163,9 +193,11 @@ things you can do to move the process along:
 
    * Ping the assignee by email (many of us have publicly available email addresses).
 
-   * If you're a member of the organization ping the [team](https://github.com/orgs/kubernetes/teams) (via @team-name) that works in the area you're submitting code.
+   * If you're a member of the organization ping the [team](https://github.com/orgs/kubernetes/teams) (via @team-name) that works in the area you're submitting code to.
 
    * If you have fixed all the issues from a review, and you haven't heard back, you should ping the assignee on the comment stream with a "please take another look" (`PTAL`) or similar comment indicating that you are ready for another review.
+
+   * If you still don't hear back, post a link to the pull request in the `#pr-reviews` channel on Slack to find additional reviewers.
 
 Read on to learn more about how to get faster reviews by following best practices.
 
@@ -181,15 +213,15 @@ Let's talk about best practices so your pull request gets reviewed quickly.
 
 * [Development guide](/contributors/devel/development.md)
 * [Coding conventions](../guide/coding-conventions.md)
-* [API conventions](/contributors/devel/api-conventions.md)
-* [Kubectl conventions](/contributors/devel/kubectl-conventions.md)
+* [API conventions](/contributors/devel/sig-architecture/api-conventions.md)
+* [Kubectl conventions](/contributors/devel/sig-cli/kubectl-conventions.md)
 
 ## 1. Is the feature wanted? File a Kubernetes Enhancement Proposal
 Are you sure Feature-X is something the Kubernetes team wants or will accept? Is it implemented to fit with other changes in flight? Are you willing to bet a few days or weeks of work on it?
 
 It's better to get confirmation beforehand.
 
-When you want to make a large or otherwise significant change, you should follow the [Kubernetes Enhancement Proposal process](/keps/0001-kubernetes-enhancement-proposal-process.md).
+When you want to make a large or otherwise significant change, you should follow the [Kubernetes Enhancement Proposal process](https://git.k8s.io/enhancements/keps/0001-kubernetes-enhancement-proposal-process.md).
 
 Even for small changes, it is often a good idea to gather feedback on an issue you filed, or even simply ask in the appropriate SIG's Slack channel to invite discussion and feedback from code owners. Here's a [list of SIGs](/sig-list.md).
 
@@ -224,7 +256,7 @@ We want every pull request to be useful on its own, so use your best judgment on
 
 As a rule of thumb, if your pull request is directly related to Feature-X and nothing else, it should probably be part of the Feature-X pull request. If you can explain why you are doing seemingly no-op work ("it makes the Feature-X change easier, I promise") we'll probably be OK with it. If you can imagine someone finding value independently of Feature-X, try it as a pull request. (Do not link pull requests by `#` in a commit description, because GitHub creates lots of spam. Instead, reference other pull requests via the pull request your commit is in.)
 
-## 3. Open a Different pull request for Fixes and Generic Features
+## 3. Open a Different Pull Request for Fixes and Generic Features
 
 **Put changes that are unrelated to your feature into a different pull request.**
 
@@ -249,11 +281,11 @@ Read up on [GoDoc](https://blog.golang.org/godoc-documenting-go-code) - follow t
 
 ## 5. Test
 
-Nothing is more frustrating than starting a review, only to find that the tests are inadequate or absent. Very few pull requests can touch code and NOT touch tests.
+Nothing is more frustrating than starting a review, only to find that the tests are inadequate or absent. Very few pull requests can touch the code and NOT touch tests.
 
 If you don't know how to test Feature-X, please ask!  We'll be happy to help you design things for easy testing or to suggest appropriate test cases.
 
-## 6. Squashing and Commit Titles
+## 6. Squashing
 
 Your reviewer has finally sent you feedback on Feature-X.
 
@@ -262,6 +294,8 @@ Make the fixups, and don't squash yet. Put them in a new commit, and re-push. Th
 We might still ask you to clean up your commits at the very end for the sake of a more readable history, but don't do this until asked: typically at the point where the pull request would otherwise be tagged `LGTM`.
 
 Each commit should have a good title line (<70 characters) and include an additional description paragraph describing in more detail the change intended.
+
+For more information, see [squash commits](./github-workflow.md#squash-commits).
 
 **General squashing guidelines:**
 
@@ -273,35 +307,260 @@ Each commit should have a good title line (<70 characters) and include an additi
 
  Don't squash when there are independent changes layered to achieve a single goal. For instance, writing a code munger could be one commit, applying it could be another, and adding a precommit check could be a third. One could argue they should be separate pull requests, but there's really no way to test/review the munger without seeing it applied, and there needs to be a precommit check to ensure the munged output doesn't immediately get out of date.
 
-A commit, as much as possible, should be a single logical change.
+## 7. Commit Message Guidelines
 
-## 7. KISS, YAGNI, MVP, etc.
+PR comments are not represented in the commit history. Commits and their commit
+messages are the _"permanent record"_ of the changes being done in your PR and
+their commit messages should accurately describe both _what_ and _why_ it is
+being done.
 
-Sometimes we need to remind each other of core tenets of software design - Keep It Simple, You Aren't Gonna Need It, Minimum Viable Product, and so on. Adding a feature "because we might need it later" is antithetical to software that ships. Add the things you need NOW and (ideally) leave room for things you might need later - but don't implement them now.
+Commit messages are comprised of two parts; the subject and the body.
 
-## 8. It's OK to Push Back
+The subject is the first line of the commit message and is often the only part
+that is needed for small or trivial changes. Those may be done as "one liners"
+with the `git commit -m` or the `--message` flag, but only if the what and
+especially why can be fully described in that few words. 
 
-Sometimes reviewers make mistakes. It's OK to push back on changes your reviewer requested. If you have a good reason for doing something a certain way, you are absolutely allowed to debate the merits of a requested change. Both the reviewer and reviewee should strive to discuss these issues in a polite and respectful manner.
+The commit message body is the portion of text below the subject when you run 
+`git commit` without the `-m` flag which will open the commit message for editing
+in your [preferred editor]. Typing a few further sentences of clarification is
+a useful investment in time both for your reviews and overall later project
+maintenance.
 
-You might be overruled, but you might also prevail. We're pretty reasonable people. Mostly.
+```
+This is the commit message subject
 
-Another phenomenon of open-source projects (where anyone can comment on any issue) is the dog-pile - your pull request gets so many comments from so many people it becomes hard to follow. In this situation, you can ask the primary reviewer (assignee) whether they want you to fork a new pull request to clear out all the comments. You don't HAVE to fix every issue raised by every person who feels like commenting, but you should answer reasonable comments with an explanation.
+Any text here is the commit message body
+Some text
+Some more text
+...
 
-## 9. Common Sense and Courtesy
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch example
+# Changes to be committed:
+#   ...
+#
+```
 
-No document can take the place of common sense and good taste. Use your best judgment, while you put
-a bit of thought into how your work can be made easier to review. If you do these things your pull requests will get merged with less friction.
+Use these guidelines below to help craft a well formatted commit message. These
+can be largely attributed to the previous work of [Chris Beams], [Tim Pope],
+[Scott Chacon] and [Ben Straub].
 
-## 10. Trivial Edits
+- [Try to keep the subject line to 50 characters or less; do not exceed 72 characters](#try-to-keep-the-subject-line-to-50-characters-or-less-do-not-exceed-72-characters)
+- [The first word in the commit message subject should be capitalized unless it starts with a lowercase symbol or other identifier](#the-first-word-in-the-commit-message-subject-should-be-capitalized-unless-it-starts-with-a-lowercase-symbol-or-other-identifier)
+- [Do not end the commit message subject with a period](#do-not-end-the-commit-message-subject-with-a-period)
+- [Use imperative mood in your commit message subject](#use-imperative-mood-in-your-commit-message-subject)
+- [Add a single blank line before the commit message body](#add-a-single-blank-line-before-the-commit-message-body)
+- [Wrap the commit message body at 72 characters](#wrap-the-commit-message-body-at-72-characters)
+- [Do not use GitHub keywords or (@)mentions within your commit message](#do-not-use-github-keywords-or-mentions-within-your-commit-message)
+- [Use the commit message body to explain the _what_ and _why_ of the commit](#use-the-commit-message-body-to-explain-the-what-and-why-of-the-commit)
+
+<!-- omit in toc -->
+### Try to keep the subject line to 50 characters or less; do not exceed 72 characters
+
+The 50 character limit for the commit message subject line acts as a focus to
+keep the message summary as concise as possible. It should be just enough to
+describe what is being done.
+
+The hard limit of 72 characters is to align with the max body size. When viewing
+the history of a repository with `git log`, git will pad the body text with
+additional blank spaces. Wrapping the width at 72 characters ensures the body
+text will be centered and easily viewable on an 80-column terminal.
+
+<!-- omit in toc -->
+#### Providing additional context
+
+You can provide additional context with fewer characters by prefixing your
+commit message with the [kind] or [area] that your PR is impacting. These are
+commonly used labels that other members of the Kubernetes community will
+understand.
+
+**Examples:**
+- `cleanup: remove unused portion of script foo`
+- `deprecation: add notice for bar feature removal in future release`
+- `etcd: update default server to 3.4.7`
+- `kube-proxy: add a test case for HostnameOverride`
+
+These can serve as a good subject before expanding further on the what and why
+within the commit message body.
+
+
+<!-- omit in toc -->
+### The first word in the commit message subject should be capitalized unless it starts with a lowercase symbol or other identifier
+
+The commit message subject is like an abbreviated sentence. The first word should
+be capitalized unless the message begins with symbol, acronym or other identifier
+such as [kind] or [area] that would regularly be lowercase.
+
+
+<!-- omit in toc -->
+### Do not end the commit message subject with a period
+
+This is primary intended to serve as a space saving measure, but also aids in
+driving the subject line to be as short and concise as possible.
+
+
+<!-- omit in toc -->
+### Use imperative mood in your commit message subject
+
+Imperative mood can be be thought of as a _"giving a command"_; it is a
+**present-tense** statement that explicitly describes what is being done.
+
+**Good Examples:**
+- Fix x error in y
+- Add foo to bar
+- Revert commit "baz"
+- Update pull request guidelines
+
+**Bad Examples**
+- Fixed x error in y
+- Added foo to bar
+- Reverting bad commit "baz"
+- Updating the pull request guidelines
+- Fixing more things
+
+A general guideline from [Chris Beams] on forming an imperative commit subject
+is it should complete this sentence:
+```
+If applied, this commit will <your subject line here>
+```
+
+**Examples:**
+- _If applied, this commit will_ **Fix x error in y**
+- _If applied, this commit will_ **Add foo to bar**
+- _If applied, this commit will_ **Revert commit "baz"**
+- _If applied, this commit will_ **Update the pull request guidelines**
+
+
+<!-- omit in toc -->
+### Add a single blank line before the commit message body
+
+Git uses the blank line to determine which portion of the commit message is the
+subject and body. Text preceding the blank line is the subject, and text
+following is considered the body.
+
+<!-- omit in toc -->
+### Wrap the commit message body at 72 characters
+
+The default column width for git is 80 characters. Git will pad the text of the
+message body with an additional 4 spaces when viewing the git log. This would
+leave you with 76 available spaces for text, however the text would be "lop-sided".
+To center the text for better viewing, the other side is artificially padded
+with the same amount of spaces, resulting in 72 usable characters per line. Think
+of them as the margins in a word doc.
+
+
+<!-- omit in toc -->
+### Do not use GitHub keywords or (@)mentions within your commit message
+
+<!-- omit in toc -->
+#### GitHub Keywords
+
+Using [GitHub keywords] followed by a `#<issue number>` reference within your
+commit message will automatically apply the `do-not-merge/invalid-commit-message`
+label to your PR preventing it from being merged. 
+
+[GitHub keywords] in a PR to close issues is considered a convenience item, but
+can have unexpected side-effects; often closing something they  shouldn't. 
+
+**Blocked Keywords:**
+- close
+- closes
+- closed
+- fix
+- fixes
+- fixed
+- resolve
+- resolves
+- resolved
+
+
+<!-- omit in toc -->
+#### (@)Mentions
+
+(@)mentions within the commit message will send a notification to that user, and
+will continually do so each time the PR is updated.
+
+
+<!-- omit in toc -->
+### Use the commit message body to explain the _what_ and _why_ of the commit
+
+Commits and their commit messages are the _"permanent record"_ of the changes
+being done in your PR. Describing why something has changed and what effects it
+may have. You are providing context to both your reviewer and the next person
+that has to touch your code.
+
+If something is resolving a bug, or is in response to a specific issue, you can
+link to it as a reference with the message body itself. These sorts of
+breadcrumbs become essential when tracking down future bugs or regressions and
+further help explain the _"why"_ the commit was made.
+
+
+**Additional Resources:**
+- [How to Write a Git Commit Message - Chris Beams](https://chris.beams.io/posts/git-commit/)
+- [Distributed Git - Contributing to a Project (Commit Guidelines)](https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project)
+- [What’s with the 50/72 rule? - Preslav Rachev](https://preslav.me/2015/02/21/what-s-with-the-50-72-rule/)
+- [A Note About Git Commit Messages - Tim Pope](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
+
+
+## 8. KISS, YAGNI, MVP, etc.
+
+Sometimes we need to remind each other of core tenets of software design - Keep
+It Simple, You Aren't Gonna Need It, Minimum Viable Product, and so on. Adding a 
+feature "because we might need it later" is antithetical to software that ships. 
+Add the things you need NOW and (ideally) leave room for things you might need 
+later - but don't implement them now.
+
+## 9. It's OK to Push Back
+
+Sometimes reviewers make mistakes. It's OK to push back on changes your reviewer
+requested. If you have a good reason for doing something a certain way, you are
+absolutely allowed to debate the merits of a requested change. Both the reviewer
+and reviewee should strive to discuss these issues in a polite and respectful manner.
+
+You might be overruled, but you might also prevail. We're pretty reasonable people.
+
+Another phenomenon of open-source projects (where anyone can comment on any issue)
+is the dog-pile - your pull request gets so many comments from so many people it
+becomes hard to follow. In this situation, you can ask the primary reviewer
+(assignee) whether they want you to fork a new pull request to clear out all the
+comments. You don't HAVE to fix every issue raised by every person who feels 
+like commenting, but you should answer reasonable comments with an explanation.
+
+## 10. Common Sense and Courtesy
+
+No document can take the place of common sense and good taste. Use your best
+judgment, while you put
+a bit of thought into how your work can be made easier to review. If you do
+these things your pull requests will get merged with less friction.
+
+## 11. Trivial Edits
 
 Each incoming Pull Request needs to be reviewed, checked, and then merged.
 
-While automation helps with this, each contribution also has an engineering cost. Therefore it is appreciated if you do NOT make trivial edits and fixes, but instead focus on giving the entire file a review.
+While automation helps with this, each contribution also has an engineering cost.
+Therefore it is appreciated if you do NOT make trivial edits and fixes, but
+instead focus on giving the entire file a review.
 
-If you find one grammatical or spelling error, it is likely there are more in that file, you can really make your Pull Request count by checking formatting, checking for broken links, and fixing errors and then submitting all the fixes at once to that file.
+If you find one grammatical or spelling error, it is likely there are more in
+that file, you can really make your Pull Request count by checking the formatting,
+checking for broken links, and fixing errors and then submitting all the fixes
+at once to that file.
 
 **Some questions to consider:**
 
 * Can the file be improved further?
 * Does the trivial edit greatly improve the quality of the content?
 
+
+[Chris Beams]: https://chris.beams.io/
+[Tim Pope]: https://tpo.pe/
+[Scott Chacon]: https://scottchacon.com/
+[Ben Straub]: https://ben.straub.cc/
+[kind]: https://github.com/kubernetes/kubernetes/labels?q=kind
+[area]: https://github.com/kubernetes/kubernetes/labels?q=area
+[preferred editor]: https://help.github.com/en/github/using-git/associating-text-editors-with-git
+[imperative mood]: https://www.grammar-monster.com/glossary/imperative_mood.htm
+[GitHub keywords]: https://help.github.com/articles/closing-issues-using-keywords

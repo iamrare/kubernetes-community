@@ -1,7 +1,7 @@
 # Kubernetes Design and Architecture
 
 A much more detailed and updated [Architectural
-Roadmap](../../devel/architectural-roadmap.md) is also available.
+Roadmap](/contributors/design-proposals/architecture/architectural-roadmap.md) is also available.
 
 ## Overview
 
@@ -20,7 +20,7 @@ for easy management and discovery.
 
 ## Scope
 
-Kubernetes is a [platform for deploying and managing containers](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
+[Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) is a platform for deploying and managing containers.
 Kubernetes provides a container runtime, container
 orchestration, container-centric infrastructure orchestration, self-healing mechanisms such as health checking and re-scheduling, and service discovery and load balancing.
 
@@ -217,7 +217,7 @@ agent.
 Each node runs a container runtime, which is responsible for downloading images and running containers.
 
 Kubelet does not link in the base container runtime. Instead, we're defining a
-[Container Runtime Interface](/contributors/devel/container-runtime-interface.md) to control the
+[Container Runtime Interface](/contributors/devel/sig-node/container-runtime-interface.md) to control the
 underlying runtime and facilitate pluggability of that layer.
 This decoupling is needed in order to maintain clear component boundaries, facilitate testing, and facilitate pluggability.
 Runtimes supported today, either upstream or by forks, include at least docker (for Linux and Windows), 
